@@ -72,6 +72,7 @@ public class Player_Controller : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
             if (colliders[i].gameObject != gameObject)
                 isGrounded = true;
+
     }
 
     //****************************************************************************************************
@@ -89,9 +90,7 @@ public class Player_Controller : MonoBehaviour
     {
         // If the user requested jump
         if (userInputObj.getUserInputBoolJump() && isGrounded && !isClimbing)
-        {
             playerRb2D.AddForce(Vector2.up * playerJumpVelocity * 100f);
-        }
         
         // If the player is falling
         if (playerRb2D.velocity.y < 0)
