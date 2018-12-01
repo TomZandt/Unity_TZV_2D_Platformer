@@ -10,16 +10,22 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] [Header("The player gravity multiplier")]                  private float playerGravityMultiplier = 3f;
     [SerializeField] [Header("The transform position to check if grounded")]    private Transform groundCheckTransform;
     [SerializeField] [Header("The layer mask denoting what is ground")]         private LayerMask groundLayerMask;
+    [SerializeField] [Header("The layer mask denoting what is a ladder")]       private LayerMask ladderLayerMask;
+    [SerializeField] [Header("The distance the player can detect a ladder")]    private float ladderDetectDistance = 2f;
 
     private Player_UserInput userInputObj;
     private Rigidbody2D playerRb2D;
 
-    private Vector2 velocity = Vector2.zero; // Used for smoothDamp
+    private const float defaultGravityScale = 1f; // Constant gravity scale for climbing etc
+
+    private Vector2 horizontalVelocity = Vector2.zero;  // Used for smoothDamp
+    private Vector2 verticalVelocity = Vector2.zero;    // Used for smoothDamp
 
     private const float groundedRadius = 0.02f;
     private bool isGrounded = false;
 
     private bool isFacingRight = true;
+    private bool isClimbing = false;
 
     //****************************************************************************************************
     private void Start()
@@ -30,6 +36,7 @@ public class Player_Controller : MonoBehaviour
         // Assign the rigid body object
         playerRb2D = GetComponent<Rigidbody2D>();
         playerRb2D.bodyType = RigidbodyType2D.Dynamic;
+        playerRb2D.gravityScale = defaultGravityScale;
         playerRb2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         playerRb2D.interpolation = RigidbodyInterpolation2D.Interpolate;
         playerRb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -49,6 +56,39 @@ public class Player_Controller : MonoBehaviour
         ProcessHorizontalMovement();
 
         ProcessJump();
+
+        // Raycast upwards to detect a ladder
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, ladderDetectDistance, ladderLayerMask);
+
+        // If we have detected a ladder
+        if (hitInfo.collider != null)
+        {
+            // If the user presses up
+            if (userInputObj.getUserInputRawVertical() > 0)
+                isClimbing = true;
+        }
+        else
+        {
+            isClimbing = false;
+        }           
+
+        // If we are climbing
+        if (isClimbing)
+        {
+            // Move the player based on the players movement speed
+            Vector2 moveVect = new Vector2(playerRb2D.velocity.x, userInputObj.getUserInputRawVertical() * (playerMoveSpeed / 2f));
+
+            // Smooth the movement and apply it
+            playerRb2D.velocity = Vector2.SmoothDamp(playerRb2D.velocity, moveVect, ref verticalVelocity, playerMoveSmoothFactor / 100f);
+
+            // Turn off gravity
+            playerRb2D.gravityScale = 0;
+        }
+        else
+        {
+            // Reset gravity
+            playerRb2D.gravityScale = defaultGravityScale;
+        }
     }
 
     //****************************************************************************************************
@@ -73,14 +113,14 @@ public class Player_Controller : MonoBehaviour
         Vector2 moveVect = new Vector2(userInputObj.getUserInputRawHorizontal() * playerMoveSpeed, playerRb2D.velocity.y);
 
         // Smooth the movement and apply it
-        playerRb2D.velocity = Vector2.SmoothDamp(playerRb2D.velocity, moveVect, ref velocity, playerMoveSmoothFactor / 100);
+        playerRb2D.velocity = Vector2.SmoothDamp(playerRb2D.velocity, moveVect, ref horizontalVelocity, playerMoveSmoothFactor / 100f);
     }
 
     //****************************************************************************************************
     private void ProcessJump()
     {
         // If the user requested jump
-        if (userInputObj.getUserInputBoolJump() && isGrounded)
+        if (userInputObj.getUserInputBoolJump() && isGrounded && !isClimbing)
             playerRb2D.AddForce(Vector2.up * playerJumpVelocity * 100f);
 
         // If the player is falling
@@ -95,7 +135,10 @@ public class Player_Controller : MonoBehaviour
     //****************************************************************************************************
     private void ApplyNewGravity()
     {
-        playerRb2D.velocity += Vector2.up * Physics2D.gravity.y * (playerGravityMultiplier - 1) * Time.fixedDeltaTime;
+        if (isClimbing)
+            return;
+
+        playerRb2D.velocity += Vector2.up * Physics2D.gravity.y * (playerGravityMultiplier - 1f) * Time.fixedDeltaTime;
     }
 
     //****************************************************************************************************
