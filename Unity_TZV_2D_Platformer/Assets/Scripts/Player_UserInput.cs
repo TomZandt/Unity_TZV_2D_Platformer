@@ -14,7 +14,7 @@ public class Player_UserInput : MonoBehaviour
         userInputRawHorizontal = Input.GetAxisRaw("Horizontal");
 
         // Get the jump input from the user
-        userInputBoolJump = Input.GetButtonDown("Jump");
+        userInputBoolJump = Input.GetButton("Jump");
     }
 
     //****************************************************************************************************

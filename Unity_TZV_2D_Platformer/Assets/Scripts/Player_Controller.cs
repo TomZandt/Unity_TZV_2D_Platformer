@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    [SerializeField] [Header("The move speed of the player")]       private float playerMoveSpeed = 10f;
-    [SerializeField] [Header("The jump velocity of the player")]    private float playerJumpVelocity = 5f;
-    [SerializeField] [Header("The movement smoothing factor")]      private float playerMoveSmoothFactor = 5f;
-    //private bool facingRight = true;
+    [SerializeField] [Header("The move speed of the player")]                   private float playerMoveSpeed = 10f;
+    [SerializeField] [Header("The jump velocity of the player")]                private float playerJumpVelocity = 5f;
+    [SerializeField] [Header("The movement smoothing factor")]                  private float playerMoveSmoothFactor = 5f;
+    [SerializeField] [Header("The player gravity multiplier")]                  private float playerGravityMultiplier = 3f;
+    [SerializeField] [Header("The transform position to check if grounded")]    private Transform groundCheckTransform;
+    [SerializeField] [Header("The layer mask denoting what is ground")]         private LayerMask groundLayerMask;
 
     private Player_UserInput userInputObj;
     private Rigidbody2D playerRb2D;
-    private Vector2 moveVect = Vector2.zero;
-    private Vector2 velocity = Vector2.zero;
+
+    private Vector2 moveVect = Vector2.zero; // Used for smoothDamp
+    private Vector2 velocity = Vector2.zero; // Used for smoothDamp
+
+    private const float groundedRadius = 0.02f;
+    private bool isGrounded = false;
 
     //****************************************************************************************************
     private void Start()
@@ -29,18 +35,16 @@ public class Player_Controller : MonoBehaviour
     }
 
     //****************************************************************************************************
-    private void Update()
-    {
-        // Calculate the amount to move the player based on the players movement speed
-        moveVect = new Vector2(userInputObj.getUserInputRawHorizontal() * playerMoveSpeed, playerRb2D.velocity.y);
-
-        // Smooth the movement and apply it
-        moveVect = Vector2.SmoothDamp(playerRb2D.velocity, moveVect, ref velocity, playerMoveSmoothFactor / 100);
-    }
-
-    //****************************************************************************************************
     private void FixedUpdate()
     {
+        isGrounded = false;
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckTransform.position, groundedRadius, groundLayerMask);
+
+        for (int i = 0; i < colliders.Length; i++)
+            if (colliders[i].gameObject != gameObject)
+                isGrounded = true;
+
         // Calculate the amount to move the player based on the players movement speed
         moveVect = new Vector2(userInputObj.getUserInputRawHorizontal() * playerMoveSpeed, playerRb2D.velocity.y);
 
@@ -48,9 +52,11 @@ public class Player_Controller : MonoBehaviour
         playerRb2D.velocity = Vector2.SmoothDamp(playerRb2D.velocity, moveVect, ref velocity, playerMoveSmoothFactor / 100);
 
         // If the user requested jump
-        if (userInputObj.getUserInputBoolJump())
-        {
+        if (userInputObj.getUserInputBoolJump() && isGrounded)
             playerRb2D.AddForce(Vector2.up * playerJumpVelocity * 100f);
-        }
+
+        // Add increased gravity and short jump control
+        if (playerRb2D.velocity.y < 0 || playerRb2D.velocity.y > 0 && !userInputObj.getUserInputBoolJump())
+            playerRb2D.velocity += Vector2.up * Physics2D.gravity.y * (playerGravityMultiplier - 1) * Time.fixedDeltaTime;
     }
 }
