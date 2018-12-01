@@ -37,10 +37,13 @@ public class Player_Controller : MonoBehaviour
     //****************************************************************************************************
     private void FixedUpdate()
     {
+        // Assume we are falling
         isGrounded = false;
 
+        // Create a list of colliders
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckTransform.position, groundedRadius, groundLayerMask);
 
+        // If there is a collider that isn't ourselves then we are grounded
         for (int i = 0; i < colliders.Length; i++)
             if (colliders[i].gameObject != gameObject)
                 isGrounded = true;
