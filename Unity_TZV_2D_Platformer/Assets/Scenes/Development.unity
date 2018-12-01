@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 1274758996}
   - component: {fileID: 1274758998}
   - component: {fileID: 1274758997}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 1473639578}
   - component: {fileID: 1473639580}
   - component: {fileID: 1473639579}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ MonoBehaviour:
   groundCheckTransform: {fileID: 482580757}
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1024
   ladderLayerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 1822677305}
   - component: {fileID: 1822677304}
   - component: {fileID: 1822677306}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1159,7 +1159,7 @@ GameObject:
   - component: {fileID: 2065083699}
   - component: {fileID: 2065083698}
   - component: {fileID: 2065083700}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
