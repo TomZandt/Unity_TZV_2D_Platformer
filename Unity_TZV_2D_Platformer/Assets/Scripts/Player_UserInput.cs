@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class Player_UserInput : MonoBehaviour
 {
-    private float userInputHorizontal = 0f;
+    private float userInputRawHorizontal = 0f;
+    private bool userInputBoolJump = false;
 
     //****************************************************************************************************
     private void Update()
     {
         // Get the horizontal axis input from the user
-        userInputHorizontal = Input.GetAxisRaw("Horizontal");
+        userInputRawHorizontal = Input.GetAxisRaw("Horizontal");
+
+        // Get the jump input from the user
+        userInputBoolJump = Input.GetButtonDown("Jump");
     }
 
     //****************************************************************************************************
-    public float getUserInputHorizontal ()
+    public float getUserInputRawHorizontal ()
     {
-        return userInputHorizontal;
+        return userInputRawHorizontal;
+    }
+
+    //****************************************************************************************************
+    public bool getUserInputBoolJump()
+    {
+        return userInputBoolJump;
     }
 }

@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-    [SerializeField] [Header("The move speed of the player")] private float playerMoveSpeed = 10f;
+    [SerializeField] [Header("The move speed of the player")]       private float playerMoveSpeed = 10f;
+    [SerializeField] [Header("The jump velocity of the player")]    private float playerJumpVelocity = 5f;
+    [SerializeField] [Header("The movement smoothing factor")]      private float playerMoveSmoothFactor = 5f;
     //private bool facingRight = true;
 
     private Player_UserInput userInputObj;
     private Rigidbody2D playerRb2D;
-    private Vector2 horizontalMoveVect;
+    private Vector2 moveVect = Vector2.zero;
+    private Vector2 velocity = Vector2.zero;
 
     //****************************************************************************************************
     private void Start()
@@ -29,13 +32,25 @@ public class Player_Controller : MonoBehaviour
     private void Update()
     {
         // Calculate the amount to move the player based on the players movement speed
-        horizontalMoveVect = new Vector2(userInputObj.getUserInputHorizontal() * playerMoveSpeed, 0);
+        moveVect = new Vector2(userInputObj.getUserInputRawHorizontal() * playerMoveSpeed, playerRb2D.velocity.y);
+
+        // Smooth the movement and apply it
+        moveVect = Vector2.SmoothDamp(playerRb2D.velocity, moveVect, ref velocity, playerMoveSmoothFactor / 100);
     }
 
     //****************************************************************************************************
     private void FixedUpdate()
     {
-        // Move the players rigid body
-        playerRb2D.MovePosition(playerRb2D.position + horizontalMoveVect * Time.fixedDeltaTime);
+        // Calculate the amount to move the player based on the players movement speed
+        moveVect = new Vector2(userInputObj.getUserInputRawHorizontal() * playerMoveSpeed, playerRb2D.velocity.y);
+
+        // Smooth the movement and apply it
+        playerRb2D.velocity = Vector2.SmoothDamp(playerRb2D.velocity, moveVect, ref velocity, playerMoveSmoothFactor / 100);
+
+        // If the user requested jump
+        if (userInputObj.getUserInputBoolJump())
+        {
+            playerRb2D.AddForce(Vector2.up * playerJumpVelocity * 100f);
+        }
     }
 }
