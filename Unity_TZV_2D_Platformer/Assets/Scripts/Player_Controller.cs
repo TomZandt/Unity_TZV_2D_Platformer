@@ -23,7 +23,6 @@ public class Player_Controller : MonoBehaviour
 
     private const float groundedRadius = 0.02f;
     private bool isGrounded = false;
-
     private bool isFacingRight = true;
     private bool isClimbing = false;
 
@@ -57,38 +56,7 @@ public class Player_Controller : MonoBehaviour
 
         ProcessJump();
 
-        // Raycast upwards to detect a ladder
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, ladderDetectDistance, ladderLayerMask);
-
-        // If we have detected a ladder
-        if (hitInfo.collider != null)
-        {
-            // If the user presses up
-            if (userInputObj.getUserInputRawVertical() > 0)
-                isClimbing = true;
-        }
-        else
-        {
-            isClimbing = false;
-        }           
-
-        // If we are climbing
-        if (isClimbing)
-        {
-            // Move the player based on the players movement speed
-            Vector2 moveVect = new Vector2(playerRb2D.velocity.x, userInputObj.getUserInputRawVertical() * (playerMoveSpeed / 2f));
-
-            // Smooth the movement and apply it
-            playerRb2D.velocity = Vector2.SmoothDamp(playerRb2D.velocity, moveVect, ref verticalVelocity, playerMoveSmoothFactor / 100f);
-
-            // Turn off gravity
-            playerRb2D.gravityScale = 0;
-        }
-        else
-        {
-            // Reset gravity
-            playerRb2D.gravityScale = defaultGravityScale;
-        }
+        ProcessClimbing();
     }
 
     //****************************************************************************************************
@@ -121,8 +89,10 @@ public class Player_Controller : MonoBehaviour
     {
         // If the user requested jump
         if (userInputObj.getUserInputBoolJump() && isGrounded && !isClimbing)
+        {
             playerRb2D.AddForce(Vector2.up * playerJumpVelocity * 100f);
-
+        }
+        
         // If the player is falling
         if (playerRb2D.velocity.y < 0)
             ApplyNewGravity();
@@ -142,7 +112,44 @@ public class Player_Controller : MonoBehaviour
     }
 
     //****************************************************************************************************
-    private void ProcessFlip()
+    private void ProcessClimbing()
+    {
+        // Raycast upwards to detect a ladder
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.up, ladderDetectDistance, ladderLayerMask);
+
+        // If we have detected a ladder
+        if (hitInfo.collider != null)
+        {
+            // If the user presses up
+            if (userInputObj.getUserInputRawVertical() > 0)
+                isClimbing = true;
+        }
+        else
+        {
+            isClimbing = false;
+        }
+
+        // If we are climbing
+        if (isClimbing)
+        {
+            // Move the player based on the players movement speed
+            Vector2 moveVect = new Vector2(playerRb2D.velocity.x, userInputObj.getUserInputRawVertical() * (playerMoveSpeed / 2f));
+
+            // Smooth the movement and apply it
+            playerRb2D.velocity = Vector2.SmoothDamp(playerRb2D.velocity, moveVect, ref verticalVelocity, playerMoveSmoothFactor / 100f);
+
+            // Turn off gravity
+            playerRb2D.gravityScale = 0;
+        }
+        else
+        {
+            // Reset gravity
+            playerRb2D.gravityScale = defaultGravityScale;
+        }
+    }
+
+        //****************************************************************************************************
+        private void ProcessFlip()
     {
         float currentDirection = userInputObj.getUserInputRawHorizontal();
 
