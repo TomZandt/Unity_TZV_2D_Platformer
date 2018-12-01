@@ -20,6 +20,8 @@ public class Player_Controller : MonoBehaviour
     private const float groundedRadius = 0.02f;
     private bool isGrounded = false;
 
+    private bool isFacingRight = true;
+
     //****************************************************************************************************
     private void Start()
     {
@@ -32,6 +34,19 @@ public class Player_Controller : MonoBehaviour
         playerRb2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         playerRb2D.interpolation = RigidbodyInterpolation2D.Interpolate;
         playerRb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    //****************************************************************************************************
+    private void Update()
+    {
+        float currentDirection = userInputObj.getUserInputRawHorizontal();
+
+        // If user has requested right and we are facing left
+        if (currentDirection > 0 && !isFacingRight)
+            FlipPlayer();
+        // If user has requested left and we are facing right
+        else if (currentDirection < 0 && isFacingRight)
+            FlipPlayer();
     }
 
     //****************************************************************************************************
@@ -61,5 +76,15 @@ public class Player_Controller : MonoBehaviour
         // Add increased gravity and short jump control
         if (playerRb2D.velocity.y < 0 || playerRb2D.velocity.y > 0 && !userInputObj.getUserInputBoolJump())
             playerRb2D.velocity += Vector2.up * Physics2D.gravity.y * (playerGravityMultiplier - 1) * Time.fixedDeltaTime;
+    }
+
+    //****************************************************************************************************
+    private void FlipPlayer ()
+    {
+        // Set direction to opposite
+        isFacingRight = !isFacingRight;
+
+        // Rotate the player
+        transform.Rotate(0f, 180f, 0f);
     }
 }
