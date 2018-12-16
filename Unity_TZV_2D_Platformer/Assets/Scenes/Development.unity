@@ -296,7 +296,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1057726556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.78, y: -5.5, z: 0}
+  m_LocalPosition: {x: 11.78, y: -5.27, z: 0}
   m_LocalScale: {x: 1, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 1979035923}
@@ -686,18 +686,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4945b6f156b36ca4e9fe27ffbeb5e188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoveSpeed: 10
-  playerJumpVelocity: 5
-  playerMoveSmoothFactor: 5
-  playerGravityMultiplier: 3
-  groundCheckTransform: {fileID: 482580757}
+  playerMoveSpeed: {fileID: 11400000, guid: 2e96e31f121466c4ca2ea1e091043e62, type: 2}
+  playerMoveSmoothFactor: {fileID: 11400000, guid: 21a459e2383212249b546ad643e799d2,
+    type: 2}
+  isPlayerFacingRight: {fileID: 11400000, guid: 5b453035c1e0d234f891235b07a4a96f,
+    type: 2}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  groundCheckTransform: {fileID: 482580757}
+  groundedRadius: {fileID: 11400000, guid: 9f6030d8352f6fa4c8053fdfc3dfc390, type: 2}
+  isPlayerGrounded: {fileID: 11400000, guid: cf7e599793367174e9cb4cc3d11fc4f9, type: 2}
+  playerJumpVelocity: {fileID: 11400000, guid: f35bba06db46c1745a0151206d3d0450, type: 2}
+  playerGravityMultiplier: {fileID: 11400000, guid: 03bf200fa371cf54da81e83ff7b5a694,
+    type: 2}
+  defaultGravityScale: {fileID: 11400000, guid: ac0d1c90879e13144af9c6538242fb58,
+    type: 2}
   ladderLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  ladderDetectDistance: 2
+  playerLadderDetectDistance: {fileID: 11400000, guid: 851c215707f1ab046b6dd464a68a02fd,
+    type: 2}
+  isPlayerOnLadder: {fileID: 11400000, guid: 74db6a54ee569dc40bf6a62c09b471f6, type: 2}
 --- !u!114 &1734395171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,7 +915,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1822677302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.96, y: 8.5, z: 0}
+  m_LocalPosition: {x: 2.96, y: 8.21, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1979035923}
