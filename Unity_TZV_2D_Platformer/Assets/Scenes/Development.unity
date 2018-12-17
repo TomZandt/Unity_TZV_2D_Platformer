@@ -666,8 +666,11 @@ GameObject:
   - component: {fileID: 1734395173}
   - component: {fileID: 1734395174}
   - component: {fileID: 1734395175}
-  - component: {fileID: 1734395171}
   - component: {fileID: 1734395170}
+  - component: {fileID: 1734395177}
+  - component: {fileID: 1734395179}
+  - component: {fileID: 1734395180}
+  - component: {fileID: 1734395171}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -683,7 +686,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1734395169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4945b6f156b36ca4e9fe27ffbeb5e188, type: 3}
+  m_Script: {fileID: 11500000, guid: cf92f02644d2ae94cb410fef9c73808a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerMoveSpeed: {fileID: 11400000, guid: 2e96e31f121466c4ca2ea1e091043e62, type: 2}
@@ -691,23 +694,6 @@ MonoBehaviour:
     type: 2}
   isPlayerFacingRight: {fileID: 11400000, guid: 5b453035c1e0d234f891235b07a4a96f,
     type: 2}
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  groundCheckTransform: {fileID: 482580757}
-  groundedRadius: {fileID: 11400000, guid: 9f6030d8352f6fa4c8053fdfc3dfc390, type: 2}
-  isPlayerGrounded: {fileID: 11400000, guid: cf7e599793367174e9cb4cc3d11fc4f9, type: 2}
-  playerJumpVelocity: {fileID: 11400000, guid: f35bba06db46c1745a0151206d3d0450, type: 2}
-  playerGravityMultiplier: {fileID: 11400000, guid: 03bf200fa371cf54da81e83ff7b5a694,
-    type: 2}
-  defaultGravityScale: {fileID: 11400000, guid: ac0d1c90879e13144af9c6538242fb58,
-    type: 2}
-  ladderLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  playerLadderDetectDistance: {fileID: 11400000, guid: 851c215707f1ab046b6dd464a68a02fd,
-    type: 2}
-  isPlayerOnLadder: {fileID: 11400000, guid: 74db6a54ee569dc40bf6a62c09b471f6, type: 2}
 --- !u!114 &1734395171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,9 +702,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1734395169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc90a77c214e65144ae4258ccc087bac, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f9c9ea62a5ddc149bdce2ca3bb30317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ladderLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  playerLadderDetectDistance: {fileID: 11400000, guid: 851c215707f1ab046b6dd464a68a02fd,
+    type: 2}
+  playerLadderSpeed: {fileID: 11400000, guid: b995b0ad6b3483049acdc81abe333274, type: 2}
+  playerLadderSmoothFactor: {fileID: 11400000, guid: 593ab2fcb3e05d54f9c149ad2e102370,
+    type: 2}
+  isPlayerOnLadder: {fileID: 11400000, guid: 74db6a54ee569dc40bf6a62c09b471f6, type: 2}
+  defaultGravityScale: {fileID: 11400000, guid: ac0d1c90879e13144af9c6538242fb58,
+    type: 2}
+  ladderGameEvent: {fileID: 11400000, guid: f9a5ee15e4e5cbd4a8c57ccba80f4c8e, type: 2}
 --- !u!4 &1734395172
 Transform:
   m_ObjectHideFlags: 0
@@ -824,6 +822,59 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1734395177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1734395169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5548353adf6b945b82568fbaba9d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerJumpVelocity: {fileID: 11400000, guid: f35bba06db46c1745a0151206d3d0450, type: 2}
+  playerPressedJump: {fileID: 11400000, guid: 7fae0c76f653ca443a6ab34c8f1d4d3c, type: 2}
+  isPlayerGrounded: {fileID: 11400000, guid: cf7e599793367174e9cb4cc3d11fc4f9, type: 2}
+  isPlayerOnLadder: {fileID: 11400000, guid: 74db6a54ee569dc40bf6a62c09b471f6, type: 2}
+  isPlayerHoldingJump: {fileID: 11400000, guid: 4cf0f2d6ffd4e274f8019df29b058b42,
+    type: 2}
+  jumpGameEvent: {fileID: 11400000, guid: 4aca887465e546947b2198c7d3dcc3c6, type: 2}
+--- !u!114 &1734395179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1734395169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b9ef278e8414b4a93d7d0498d88092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerGravityMultiplier: {fileID: 11400000, guid: 03bf200fa371cf54da81e83ff7b5a694,
+    type: 2}
+  defaultGravityScale: {fileID: 11400000, guid: ac0d1c90879e13144af9c6538242fb58,
+    type: 2}
+  isPlayerHoldingJump: {fileID: 11400000, guid: 4cf0f2d6ffd4e274f8019df29b058b42,
+    type: 2}
+  isPlayerOnLadder: {fileID: 11400000, guid: 74db6a54ee569dc40bf6a62c09b471f6, type: 2}
+--- !u!114 &1734395180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1734395169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81081090d542a0489c19b942764c45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  groundCheckTransform: {fileID: 482580757}
+  groundedRadius: {fileID: 11400000, guid: 9f6030d8352f6fa4c8053fdfc3dfc390, type: 2}
+  isPlayerGrounded: {fileID: 11400000, guid: cf7e599793367174e9cb4cc3d11fc4f9, type: 2}
 --- !u!1 &1754281275
 GameObject:
   m_ObjectHideFlags: 0
