@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1734395172}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 7
+    OrthographicSize: 5
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -990,7 +990,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1754281275}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2400002, z: -10}
+  m_LocalPosition: {x: 0, y: 1.6000003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1073431920}
@@ -1129,9 +1129,9 @@ GameObject:
   - component: {fileID: 1873902738}
   - component: {fileID: 1873902737}
   - component: {fileID: 1873902741}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Enemy
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1252,12 +1252,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 11400000, guid: aac1ef37953d39b4096cc9206bd0f081, type: 2}
+  remainState: {fileID: 11400000, guid: ba1512aa3619fb843849c22d126ff6d3, type: 2}
   enemyStats: {fileID: 11400000, guid: bf55128092859ae419e4dcf042a632d6, type: 2}
   detectionTransform: {fileID: 1873902740}
   waypoints:
   - {fileID: 2184441}
   - {fileID: 133255595}
   nextWaypoint: 0
+  chaseTarget: {fileID: 0}
 --- !u!1 &1900725526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1309,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1330,7 +1332,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1900725526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.2400002, z: -10}
+  m_LocalPosition: {x: 0, y: 1.6000003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22938858}
@@ -1517,7 +1519,7 @@ PlatformEffector2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2065083696}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 256

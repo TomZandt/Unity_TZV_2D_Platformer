@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba154b3bf9cdf8b478232a5ab2e925d9, type: 3}
-  m_Name: StateMachine_State_Patrol
+  m_Name: StateMachine_State_Chase
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 45926b1cb3f1f724ba708595dea599cc, type: 2}
+  - {fileID: 11400000, guid: 5f946b5ee841c4749a508e56050570a2, type: 2}
   switchs:
   - decision: {fileID: 11400000, guid: 2ed506a029250244b90ff64fbc5b9291, type: 2}
-    stateIfTrue: {fileID: 11400000, guid: 2e7fac8d966a07d459f5e4f3a2088649, type: 2}
-    stateIfFalse: {fileID: 11400000, guid: ba1512aa3619fb843849c22d126ff6d3, type: 2}
-  gizmoColourForState: {r: 0, g: 1, b: 0.10349083, a: 1}
+    stateIfTrue: {fileID: 11400000, guid: ba1512aa3619fb843849c22d126ff6d3, type: 2}
+    stateIfFalse: {fileID: 11400000, guid: aac1ef37953d39b4096cc9206bd0f081, type: 2}
+  gizmoColourForState: {r: 1, g: 0, b: 0, a: 1}

@@ -8,10 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c18247d1d3292c4486f0bf2770f47cb, type: 3}
-  m_Name: EnemyStats_1
+  m_Script: {fileID: 11500000, guid: 5e1e0dbf00634ac4d9c5295d2cde214a, type: 3}
+  m_Name: StateMachine_Action_Chase
   m_EditorClassIdentifier: 
-  enemyMoveSpeed: 2
-  enemyChaseSpeed: 4
-  playerDetectRadius: 10
-  playerChasePadding: 1.5
