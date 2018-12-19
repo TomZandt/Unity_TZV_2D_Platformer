@@ -11,32 +11,20 @@ public class StateMachine_Controller : MonoBehaviour
     public Transform[] waypoints;
     [HideInInspector] public int nextWaypoint;
     [HideInInspector] public Transform chaseTarget;
+    [HideInInspector] public float attackTime = 0f;
 
     //****************************************************************************************************
     private void Update()
     {
         currentState.UpdateState(this);
     }
-
+    
     //****************************************************************************************************
     public void SwitchToState(StateMachine_State _state)
     {
         if (remainState != _state)
         {
             currentState = _state;
-        }
-    }
-
-    //****************************************************************************************************
-    // Debug Gizmos
-    //****************************************************************************************************
-    private void OnDrawGizmos()
-    {
-        if (currentState != null && detectionTransform != null)
-        {
-            Gizmos.color = currentState.gizmoColourForState;
-
-            Gizmos.DrawWireSphere(detectionTransform.position, enemyStats.playerDetectRadius);
         }
     }
 }

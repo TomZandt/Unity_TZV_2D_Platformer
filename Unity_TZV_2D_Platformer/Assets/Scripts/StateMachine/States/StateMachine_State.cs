@@ -7,17 +7,16 @@ public class StateMachine_State : ScriptableObject
 {
     public StateMachine_Action[] actions;
     public StateMachine_Switch[] switchs;
-    public Color gizmoColourForState = Color.white; // Debug
 
     //****************************************************************************************************
     public void UpdateState(StateMachine_Controller _controller)
     {
-        DoActions(_controller);
-        DoSwitchs(_controller);
+        DoAction(_controller);
+        DoSwitchState(_controller);
     }
 
     //****************************************************************************************************
-    private void DoActions(StateMachine_Controller _controller)
+    private void DoAction(StateMachine_Controller _controller)
     {
         for (int i = 0; i < actions.Length; i++)
         {
@@ -26,7 +25,7 @@ public class StateMachine_State : ScriptableObject
     }
 
     //****************************************************************************************************
-    private void DoSwitchs(StateMachine_Controller _controller)
+    private void DoSwitchState(StateMachine_Controller _controller)
     {
         for (int i = 0; i < switchs.Length; i++)
         {

@@ -28,9 +28,5 @@ public class StateMachine_Action_Chase : StateMachine_Action
         {
             _controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _controller.chaseTarget.position, _controller.enemyStats.enemyChaseSpeed * Time.deltaTime);
         }
-        else
-        {
-            _controller.transform.position = _controller.transform.position;
-        }
     }
 }
