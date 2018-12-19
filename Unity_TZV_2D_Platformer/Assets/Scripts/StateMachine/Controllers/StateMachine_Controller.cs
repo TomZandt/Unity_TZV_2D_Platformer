@@ -9,7 +9,7 @@ public class StateMachine_Controller : MonoBehaviour
     public EnemyStats enemyStats;
     public Transform detectionTransform;
     public Transform[] waypoints;
-    [HideInInspector] public int nextWaypoint;
+    public bool useRandomWithinWaypoints = true;
     [HideInInspector] public Transform chaseTarget;
     [HideInInspector] public float attackTime = 0f;
 

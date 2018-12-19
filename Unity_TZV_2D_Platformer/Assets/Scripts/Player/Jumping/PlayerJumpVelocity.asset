@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69072e6f5a79f114691b77c98d0c6cb7, type: 3}
   m_Name: PlayerJumpVelocity
   m_EditorClassIdentifier: 
-  value: 10
+  value: 8
