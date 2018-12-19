@@ -11,4 +11,5 @@ public class EnemyStats : ScriptableObject
     public float enemyAttackRate = 1f;
     public float playerDetectRadius = 5f;
     public float playerChasePadding = 2f;
+    public float enemyHealth = 8f;
 }
