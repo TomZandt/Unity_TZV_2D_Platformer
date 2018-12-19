@@ -13,5 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMoveSpeed: 2
   enemyChaseSpeed: 4
+  enemyAttackRadius: 2
+  enemyAttackRate: 0.5
   playerDetectRadius: 10
   playerChasePadding: 1.5

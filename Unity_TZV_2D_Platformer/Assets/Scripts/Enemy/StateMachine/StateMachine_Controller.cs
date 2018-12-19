@@ -11,7 +11,6 @@ public class StateMachine_Controller : MonoBehaviour
     public Transform[] waypoints;
     [HideInInspector] public int nextWaypoint;
     [HideInInspector] public Transform chaseTarget;
-    [HideInInspector] public float countdown = 0f;
 
     //****************************************************************************************************
     private void Update()
@@ -25,23 +24,7 @@ public class StateMachine_Controller : MonoBehaviour
         if (remainState != _state)
         {
             currentState = _state;
-
-            OnExitState();
         }
-    }
-
-    //****************************************************************************************************
-    public bool checkCountdown(float _duration)
-    {
-        countdown += Time.deltaTime;
-
-        return (countdown >= _duration);
-    }
-
-    //****************************************************************************************************
-    private void OnExitState ()
-    {
-        countdown = 0;
     }
 
     //****************************************************************************************************
