@@ -27,7 +27,7 @@ public class StateMachine_Action_Patrol : StateMachine_Action
     private void simplePatrol(StateMachine_Controller _controller, Vector2 _waypoint1, Vector2 _waypoint2)
     {
         // If we are to far from waypoint and is waypoint 1
-        if (Vector2.Distance(_controller.transform.position, _waypoint1) > 0.1f && isWaypoint1)
+        if (Vector2.Distance(_controller.transform.position, _waypoint1) > 1f && isWaypoint1)
         {
             // Move to waypoint 1
             _controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _waypoint1, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
@@ -38,7 +38,7 @@ public class StateMachine_Action_Patrol : StateMachine_Action
             isWaypoint1 = false;
 
             // If we are too far from waypoint 2
-            if (Vector2.Distance(_controller.transform.position, _waypoint2) > 0.1f)
+            if (Vector2.Distance(_controller.transform.position, _waypoint2) > 1f)
             {
                 // Move to waypoint 2
                 _controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _waypoint2, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
@@ -66,7 +66,7 @@ public class StateMachine_Action_Patrol : StateMachine_Action
         }
 
         // If we are too far from the waypoint
-        if (Vector2.Distance(_controller.transform.position, nextWaypoint) > 0.1f)
+        if (Vector2.Distance(_controller.transform.position, nextWaypoint) > 1f)
         {
             // Move towards the waypoint
             _controller.transform.position = Vector2.MoveTowards(_controller.transform.position, nextWaypoint, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
