@@ -34,3 +34,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Exclude any PSD/AI source
+#*.psd
+#*.ai
