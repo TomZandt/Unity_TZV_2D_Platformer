@@ -25,4 +25,10 @@ public class StateMachine_Action_Attack : StateMachine_Action
             }
         }
     }
+
+    //****************************************************************************************************
+    public override void FixedAct(StateMachine_Controller _controller)
+    {
+        
+    }
 }

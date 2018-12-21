@@ -8,6 +8,7 @@ public class Player_Controller_Gravity : MonoBehaviour
     [SerializeField] private FloatVariable defaultGravityScale;
     [SerializeField] private BoolVariable isPlayerHoldingJump;
     [SerializeField] private BoolVariable isPlayerOnLadder;
+    [SerializeField] private BoolVariable playerPressedJump;
 
     private Rigidbody2D rb;
 

@@ -16,11 +16,26 @@ public class StateMachine_State : ScriptableObject
     }
 
     //****************************************************************************************************
+    public void FixedUpdateState(StateMachine_Controller _controller)
+    {
+        DoFixedAction(_controller);
+    }
+
+    //****************************************************************************************************
     private void DoAction(StateMachine_Controller _controller)
     {
         for (int i = 0; i < actions.Length; i++)
         {
             actions[i].Act(_controller);
+        }
+    }
+
+    //****************************************************************************************************
+    private void DoFixedAction(StateMachine_Controller _controller)
+    {
+        for (int i = 0; i < actions.Length; i++)
+        {
+            actions[i].FixedAct(_controller);
         }
     }
 
