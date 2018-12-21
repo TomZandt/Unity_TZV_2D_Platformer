@@ -73,20 +73,23 @@ public class StateMachine_Action_Chase : StateMachine_Action
         // Move
         _controller.rb.AddForce(direction, _controller.enemyStats.enemyForceMode);
 
+
         // If we are close enough to the waypoint
         if (Vector2.Distance(_controller.transform.position, path.vectorPath[currentWaypoint]) < _controller.enemyStats.waypointCompleteDistance)
         {
             currentWaypoint++;
             return;
         }
-
     }
 
     //****************************************************************************************************
     private void FindPath(StateMachine_Controller _controller)
     {
         if (seeker == null)
+        {
+            Debug.Log("No Seeker");
             seeker = _controller.GetComponent<Seeker>();
+        }
 
         // Start a new path to the target and return result to OnPathComplete
         seeker.StartPath(_controller.transform.position, _controller.chaseTarget.position, OnPathComplete);

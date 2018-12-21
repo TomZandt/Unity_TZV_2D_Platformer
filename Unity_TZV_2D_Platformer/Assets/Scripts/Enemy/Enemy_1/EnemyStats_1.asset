@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: EnemyStats_1
   m_EditorClassIdentifier: 
   enemyMoveSpeed: 2
-  enemyChaseSpeed: 5
+  enemyChaseSpeed: 10
   enemyForceMode: 1
   waypointCompleteDistance: 1
   enemyAttackRadius: 2
