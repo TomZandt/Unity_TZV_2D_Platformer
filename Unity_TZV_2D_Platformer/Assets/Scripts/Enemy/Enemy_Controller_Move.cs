@@ -16,6 +16,7 @@ public class Enemy_Controller_Move : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         pathFinder = GetComponent<EnemyPathfinder>();
+        enemyStats.isEnemyFacingRight = true;
     }
 
     //****************************************************************************************************

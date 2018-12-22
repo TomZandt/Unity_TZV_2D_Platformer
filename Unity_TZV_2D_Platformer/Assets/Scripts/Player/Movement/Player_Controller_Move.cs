@@ -16,6 +16,7 @@ public class Player_Controller_Move : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        isPlayerFacingRight.value = true;
     }
 
     //****************************************************************************************************

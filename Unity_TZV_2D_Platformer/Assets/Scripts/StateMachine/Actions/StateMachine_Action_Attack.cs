@@ -14,13 +14,13 @@ public class StateMachine_Action_Attack : StateMachine_Action
         {
             if (colliders[i].CompareTag("Player"))
             {
-                if (Time.time >= _controller.attackTime)
+                if (Time.unscaledTime >= _controller.attackTime)
                 {
                     // Attack Player here
 
                     Debug.Log("I attacked you");
 
-                    _controller.attackTime = Time.time + _controller.enemyStats.enemyAttackRate;
+                    _controller.attackTime = Time.unscaledTime + _controller.enemyStats.enemyAttackRate;
                 }
             }
         }

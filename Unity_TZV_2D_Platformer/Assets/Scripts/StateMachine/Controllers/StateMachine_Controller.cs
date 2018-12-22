@@ -15,13 +15,11 @@ public class StateMachine_Controller : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public float attackTime = 0f;
     [HideInInspector] public Transform player;
-    [HideInInspector] public MyAIPathSetter aiSetter;
 
     //****************************************************************************************************
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        aiSetter = GetComponent<MyAIPathSetter>();
     }
 
     //****************************************************************************************************
