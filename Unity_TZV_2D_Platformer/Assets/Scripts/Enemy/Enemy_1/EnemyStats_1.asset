@@ -17,6 +17,6 @@ MonoBehaviour:
   waypointCompleteDistance: 1
   enemyAttackRadius: 2
   enemyAttackRate: 0.5
-  playerDetectRadius: 10
+  playerDetectRadius: 20
   playerChasePadding: 1.5
   enemyHealth: 8

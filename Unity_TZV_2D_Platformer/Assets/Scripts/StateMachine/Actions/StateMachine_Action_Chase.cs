@@ -33,11 +33,15 @@ public class StateMachine_Action_Chase : StateMachine_Action
  {
      _controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _controller.chaseTarget.position, _controller.enemyStats.enemyChaseSpeed * Time.deltaTime);
  }*/
+        if (_controller.aiSetter.getCanSearch() != true)
+        {
+            _controller.aiSetter.setCanSearch(true);
+        }
     }
 
     //****************************************************************************************************
     public override void FixedAct(StateMachine_Controller _controller)
-    {
+    {/*
         // Find path to target
         FindPath(_controller);
 
@@ -80,6 +84,7 @@ public class StateMachine_Action_Chase : StateMachine_Action
             currentWaypoint++;
             return;
         }
+        */
     }
 
     //****************************************************************************************************
