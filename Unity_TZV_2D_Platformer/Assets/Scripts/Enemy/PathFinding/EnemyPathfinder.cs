@@ -19,7 +19,7 @@ public class EnemyPathfinder : MonoBehaviour
     private Seeker seeker;
     private Path path;
     private int currentWaypoint;
-    private bool reachedEndOfPath;
+    //private bool reachedEndOfPath;
 
     public float repathRate = 0.5f;
     private float lastRepath = float.NegativeInfinity;
@@ -76,7 +76,7 @@ public class EnemyPathfinder : MonoBehaviour
         // Dont do anything if we have no path
         if (path == null) return;
 
-        reachedEndOfPath = false;
+        // reachedEndOfPath = false;
 
         float distanceToWaypoint;
 
@@ -92,7 +92,7 @@ public class EnemyPathfinder : MonoBehaviour
                 }
                 else
                 {
-                    reachedEndOfPath = true;
+                    // reachedEndOfPath = true;
                     break;
                 }
             }
