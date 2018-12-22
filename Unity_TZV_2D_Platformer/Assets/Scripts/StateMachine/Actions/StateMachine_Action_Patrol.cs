@@ -13,11 +13,6 @@ public class StateMachine_Action_Patrol : StateMachine_Action
     //****************************************************************************************************
     public override void Act(StateMachine_Controller _controller)
     {
-        if (_controller.aiSetter.getCanSearch() != false)
-        {
-            _controller.aiSetter.setCanSearch(false);
-        }
-
         if (_controller.useRandomWithinWaypoints)
         {
             randomPatrol(_controller, _controller.waypoints[0].position, _controller.waypoints[1].position);

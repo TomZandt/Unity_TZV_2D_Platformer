@@ -5,20 +5,22 @@ using Pathfinding;
 
 public class StateMachine_Controller : MonoBehaviour
 {
-    public Rigidbody2D rb;
     public StateMachine_State currentState;
     public StateMachine_State remainState;
     public EnemyStats enemyStats;
     public Transform detectionTransform;
     public Transform[] waypoints;
     public bool useRandomWithinWaypoints = true;
-    [HideInInspector] public Transform chaseTarget;
+
+    [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public float attackTime = 0f;
+    [HideInInspector] public Transform chaseTarget;
     [HideInInspector] public MyAIPathSetter aiSetter;
 
     //****************************************************************************************************
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         aiSetter = GetComponent<MyAIPathSetter>();
     }
 

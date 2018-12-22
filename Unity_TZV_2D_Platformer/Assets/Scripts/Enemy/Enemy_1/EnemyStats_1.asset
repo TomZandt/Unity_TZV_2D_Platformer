@@ -11,12 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c18247d1d3292c4486f0bf2770f47cb, type: 3}
   m_Name: EnemyStats_1
   m_EditorClassIdentifier: 
-  enemyMoveSpeed: 2
-  enemyChaseSpeed: 10
+  enemyMoveSpeed: 8
+  enemyChaseSpeed: 8
   enemyForceMode: 1
-  waypointCompleteDistance: 1
+  waypointCompleteDistance: 4
   enemyAttackRadius: 2
   enemyAttackRate: 0.5
   playerDetectRadius: 20
   playerChasePadding: 1.5
   enemyHealth: 8
+  enemyMoveSmoothFactor: 5
+  isEnemyFacingRight: 1
