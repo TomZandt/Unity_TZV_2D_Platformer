@@ -14,7 +14,7 @@ public class StateMachine_Decision_Look : StateMachine_Decision
         {
             if (colliders[i].CompareTag("Player"))
             {
-                _controller.chaseTarget = colliders[i].transform;
+                _controller.player = colliders[i].transform;
                 return true;
             }
         }

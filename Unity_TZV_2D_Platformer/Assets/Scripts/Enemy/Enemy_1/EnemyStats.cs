@@ -14,4 +14,6 @@ public class EnemyStats : ScriptableObject
     public float enemyHealth = 8f;
     public float enemyMoveSmoothFactor = 5f;
     public bool isEnemyFacingRight = true;
+    public bool allowedToChase = false;
+    public Vector3 target;
 }

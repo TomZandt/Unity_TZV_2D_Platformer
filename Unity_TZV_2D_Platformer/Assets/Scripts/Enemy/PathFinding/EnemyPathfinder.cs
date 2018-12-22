@@ -13,7 +13,7 @@ using Pathfinding;
 
 public class EnemyPathfinder : MonoBehaviour
 {
-    public Transform targetPosition;
+    public Vector2 targetPosition;
     public EnemyStats enemyStats;
 
     private Seeker seeker;
@@ -33,7 +33,7 @@ public class EnemyPathfinder : MonoBehaviour
 
         seeker = GetComponent<Seeker>();
 
-        seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
+        seeker.StartPath(transform.position, enemyStats.target, OnPathComplete);
     }
 
     //****************************************************************************************************
@@ -49,7 +49,7 @@ public class EnemyPathfinder : MonoBehaviour
         }
         else
         {
-            if (path != null) path.Release(this); 
+            if (path != null) path.Release(this);
 
             path = p;
 
@@ -70,7 +70,7 @@ public class EnemyPathfinder : MonoBehaviour
         {
             lastRepath = Time.time;
 
-            seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
+            seeker.StartPath(transform.position, enemyStats.target, OnPathComplete);
         }
 
         // Dont do anything if we have no path
@@ -86,7 +86,7 @@ public class EnemyPathfinder : MonoBehaviour
 
             if (distanceToWaypoint < enemyStats.waypointCompleteDistance)
             {
-                if (currentWaypoint + 4 < path.vectorPath.Count)
+                if (currentWaypoint + 1 < path.vectorPath.Count)
                 {
                     currentWaypoint++;
                 }
@@ -103,8 +103,6 @@ public class EnemyPathfinder : MonoBehaviour
         }
 
         Vector3 direction = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-
-        Debug.Log(direction);
 
         directionToReturn = direction;
     }

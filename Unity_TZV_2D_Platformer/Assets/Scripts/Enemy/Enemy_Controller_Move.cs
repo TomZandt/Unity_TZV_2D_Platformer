@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Controller_Move : MonoBehaviour 
+public class Enemy_Controller_Move : MonoBehaviour
 {
     [SerializeField] private EnemyStats enemyStats;
 
@@ -27,6 +27,13 @@ public class Enemy_Controller_Move : MonoBehaviour
 
     //****************************************************************************************************
     private void FixedUpdate()
+    {
+        Move();
+
+    }
+
+    //****************************************************************************************************
+    private void Move()
     {
         // Calculate the amount to move the player based on the players movement speed
         Vector2 moveVect = new Vector2(Direction.x * enemyStats.enemyMoveSpeed, rb.velocity.y);

@@ -19,14 +19,14 @@ public class StateMachine_Action_Patrol : StateMachine_Action
         }
         else
         {
-            simplePatrol(_controller, _controller.waypoints[0].position, _controller.waypoints[1].position);
+           simplePatrol(_controller, _controller.waypoints[0].position, _controller.waypoints[1].position);
         }
     }
 
     //****************************************************************************************************
     public override void FixedAct(StateMachine_Controller _controller)
     {
-        
+
     }
 
     //****************************************************************************************************
@@ -36,7 +36,8 @@ public class StateMachine_Action_Patrol : StateMachine_Action
         if (Vector2.Distance(_controller.transform.position, _waypoint1) > _controller.enemyStats.waypointCompleteDistance && isWaypoint1)
         {
             // Move to waypoint 1
-            _controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _waypoint1, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
+            //_controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _waypoint1, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
+            _controller.enemyStats.target = _waypoint1;
         }
         else
         {
@@ -47,7 +48,8 @@ public class StateMachine_Action_Patrol : StateMachine_Action
             if (Vector2.Distance(_controller.transform.position, _waypoint2) > _controller.enemyStats.waypointCompleteDistance)
             {
                 // Move to waypoint 2
-                _controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _waypoint2, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
+                //_controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _waypoint2, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
+                _controller.enemyStats.target = _waypoint2;
             }
             else
             {
@@ -75,7 +77,8 @@ public class StateMachine_Action_Patrol : StateMachine_Action
         if (Vector2.Distance(_controller.transform.position, nextWaypoint) > _controller.enemyStats.waypointCompleteDistance)
         {
             // Move towards the waypoint
-            _controller.transform.position = Vector2.MoveTowards(_controller.transform.position, nextWaypoint, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
+            //_controller.transform.position = Vector2.MoveTowards(_controller.transform.position, nextWaypoint, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
+            _controller.enemyStats.target = nextWaypoint;
 
             // Look for new waypoint
             findNext = false;
