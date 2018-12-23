@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Name: EnemyStats_1
   m_EditorClassIdentifier: 
   enemyHealth: 8
-  enemyAttackRadius: 2
+  enemyAttackRadius: 1
   enemyAttackRate: 0.5
-  isEnemyFacingRight: 1
+  enemyAttackDamage: 1
+  isEnemyFacingRight: 0
   enemyMoveSmoothFactor: 5
   enemyMoveSpeed: 8
   target: {x: 25, y: 24, z: 0}

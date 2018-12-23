@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy_Controller_Move : MonoBehaviour
 {
     [SerializeField] private EnemyStats enemyStats;
-
+    
     private Rigidbody2D rb;
     private Vector3 Direction;
     private Vector2 horizontalVelocity = Vector2.zero;  // Used for smoothDamp

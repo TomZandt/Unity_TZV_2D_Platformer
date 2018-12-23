@@ -7,7 +7,7 @@ public class PlayerStats : ScriptableObject
 {
     [Header("Health")]
     public int playerMaxHealth = 5;
-    public int playerHealth = 5;
+    [ReadOnly] public int playerHealth = 5;
 
     [Header("Attack")]
     [ReadOnly] public bool playerCanFire = true;

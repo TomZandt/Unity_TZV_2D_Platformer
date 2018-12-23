@@ -16,10 +16,8 @@ public class StateMachine_Action_Attack : StateMachine_Action
             {
                 if (Time.unscaledTime >= _controller.attackTime)
                 {
-                    // Attack Player here
-
-                    Debug.Log("I attacked you");
-
+                    colliders[i].GetComponent<Player_Health>().TakeDamage(_controller.enemyStats.enemyAttackDamage);
+                    _controller.enemyAttackGameEvent.Raise();
                     _controller.attackTime = Time.unscaledTime + _controller.enemyStats.enemyAttackRate;
                 }
             }

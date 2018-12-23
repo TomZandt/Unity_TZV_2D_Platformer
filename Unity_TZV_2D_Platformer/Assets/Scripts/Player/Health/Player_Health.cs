@@ -7,6 +7,12 @@ public class Player_Health : MonoBehaviour
     [SerializeField] private PlayerStats playerStats;
 
     //****************************************************************************************************
+    private void Start()
+    {
+        playerStats.playerHealth = playerStats.playerMaxHealth;
+    }
+
+    //****************************************************************************************************
     public void TakeDamage(int _damage)
     {
         playerStats.playerHealth -= _damage;

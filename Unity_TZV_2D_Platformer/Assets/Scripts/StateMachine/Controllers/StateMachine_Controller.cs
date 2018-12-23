@@ -16,6 +16,8 @@ public class StateMachine_Controller : MonoBehaviour
     [HideInInspector] public float attackTime = 0f;
     [HideInInspector] public Transform player;
 
+    [SerializeField] public GameEvent enemyAttackGameEvent;
+
     //****************************************************************************************************
     private void Start()
     {
@@ -41,5 +43,15 @@ public class StateMachine_Controller : MonoBehaviour
         {
             currentState = _state;
         }
+    }
+
+    //****************************************************************************************************
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, enemyStats.enemyAttackRadius * 2);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, enemyStats.playerDetectRadius);
     }
 }

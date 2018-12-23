@@ -11,9 +11,10 @@ public class EnemyStats : ScriptableObject
     [Header("Attack")]
     public float enemyAttackRadius = 2f;
     public float enemyAttackRate = 1f;
+    public int enemyAttackDamage = 1;
 
     [Header("Movement")]
-    public bool isEnemyFacingRight = true;
+    [ReadOnly] public bool isEnemyFacingRight = true;
     public float enemyMoveSmoothFactor = 5f;
     public float enemyMoveSpeed = 2f;
 
