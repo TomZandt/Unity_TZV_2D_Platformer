@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyStats : ScriptableObject
 {
     [Header("Health")]
+    public float enemyMaxHealth = 8f;
     public float enemyHealth = 8f;
 
     [Header("Attack")]
