@@ -20,7 +20,7 @@ public class EnemyStats : ScriptableObject
     public float enemyMoveSpeed = 2f;
 
     [Header("Path Finding")]
-    public Vector3 target;
+    [ReadOnly] public Vector3 playerPosition;
     public float waypointCompleteDistance = 3f;
 
     [Header("State Machine")]

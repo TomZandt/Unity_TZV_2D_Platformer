@@ -13,13 +13,14 @@ using Pathfinding;
 
 public class EnemyPathfinder : MonoBehaviour
 {
-    public Vector2 targetPosition;
+    //public Vector2 targetPosition;
     public EnemyStats enemyStats;
-
+    
     private Seeker seeker;
     private Path path;
     private int currentWaypoint;
     //private bool reachedEndOfPath;
+    private StateMachine_Controller controller;
 
     public float repathRate = 0.5f;
     private float lastRepath = float.NegativeInfinity;
@@ -31,9 +32,11 @@ public class EnemyPathfinder : MonoBehaviour
     {
         directionToReturn = new Vector2(0f, 0f);
 
+        controller = GetComponent<StateMachine_Controller>();
+
         seeker = GetComponent<Seeker>();
 
-        seeker.StartPath(transform.position, enemyStats.target, OnPathComplete);
+        seeker.StartPath(transform.position, controller.aiTarget, OnPathComplete);
     }
 
     //****************************************************************************************************
@@ -70,7 +73,7 @@ public class EnemyPathfinder : MonoBehaviour
         {
             lastRepath = Time.time;
 
-            seeker.StartPath(transform.position, enemyStats.target, OnPathComplete);
+            seeker.StartPath(transform.position, controller.aiTarget, OnPathComplete);
         }
 
         // Dont do anything if we have no path

@@ -9,7 +9,7 @@ public class StateMachine_Action_Chase : StateMachine_Action
     //****************************************************************************************************
     public override void Act(StateMachine_Controller _controller)
     {
-        _controller.enemyStats.target = _controller.player.position;
+        _controller.aiTarget = _controller.playerGO.transform.position;
     }
 
     //****************************************************************************************************

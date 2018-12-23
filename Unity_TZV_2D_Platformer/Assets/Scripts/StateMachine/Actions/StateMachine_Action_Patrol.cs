@@ -37,7 +37,7 @@ public class StateMachine_Action_Patrol : StateMachine_Action
         {
             // Move to waypoint 1
             //_controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _waypoint1, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
-            _controller.enemyStats.target = _waypoint1;
+            _controller.aiTarget = _waypoint1;
         }
         else
         {
@@ -49,7 +49,7 @@ public class StateMachine_Action_Patrol : StateMachine_Action
             {
                 // Move to waypoint 2
                 //_controller.transform.position = Vector2.MoveTowards(_controller.transform.position, _waypoint2, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
-                _controller.enemyStats.target = _waypoint2;
+                _controller.aiTarget = _waypoint2;
             }
             else
             {
@@ -78,7 +78,7 @@ public class StateMachine_Action_Patrol : StateMachine_Action
         {
             // Move towards the waypoint
             //_controller.transform.position = Vector2.MoveTowards(_controller.transform.position, nextWaypoint, _controller.enemyStats.enemyMoveSpeed * Time.deltaTime);
-            _controller.enemyStats.target = nextWaypoint;
+            _controller.aiTarget = nextWaypoint;
 
             // Look for new waypoint
             findNext = false;

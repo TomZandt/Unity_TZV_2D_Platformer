@@ -10,15 +10,13 @@ public class Enemy_Health : MonoBehaviour
     //****************************************************************************************************
     private void Start()
     {
-        currentHealth = enemyStats.enemyHealth;
+        currentHealth = enemyStats.enemyMaxHealth;
     }
 
     //****************************************************************************************************
     public void TakeDamage(float _damage)
     {
         currentHealth -= _damage;
-
-        Debug.Log("Enemy health: " + currentHealth);
 
         if (currentHealth < 0)
         {

@@ -14,7 +14,7 @@ public class StateMachine_Decision_Look : StateMachine_Decision
         {
             if (colliders[i].CompareTag("Player"))
             {
-                _controller.player = colliders[i].transform;
+                _controller.aiTarget = colliders[i].transform.position;
                 return true;
             }
         }

@@ -5,6 +5,7 @@ using Pathfinding;
 
 public class StateMachine_Controller : MonoBehaviour
 {
+    public GameObject playerGO;
     public StateMachine_State currentState;
     public StateMachine_State remainState;
     public EnemyStats enemyStats;
@@ -14,19 +15,27 @@ public class StateMachine_Controller : MonoBehaviour
 
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public float attackTime = 0f;
-    [HideInInspector] public Transform player;
+    [HideInInspector] public Vector3 aiTarget;
 
     [SerializeField] public GameEvent enemyAttackGameEvent;
 
     //****************************************************************************************************
     private void Start()
     {
+        enemyStats.playerPosition = playerGO.transform.position;
+
         rb = GetComponent<Rigidbody2D>();
+
+        aiTarget = Vector3.zero;
     }
 
     //****************************************************************************************************
     private void Update()
     {
+        if (aiTarget == Vector3.zero) aiTarget = waypoints[0].position;
+
+        if (enemyStats.playerPosition != playerGO.transform.position) enemyStats.playerPosition = playerGO.transform.position;
+
         currentState.UpdateState(this);
     }
 

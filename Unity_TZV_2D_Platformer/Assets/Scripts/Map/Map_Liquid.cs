@@ -5,7 +5,6 @@ using UnityEngine;
 public class Map_Liquid : MonoBehaviour 
 {
     private bool canHurt = true;
-    private float attackRate = 1f;
     private int damage = 100;
 
     //****************************************************************************************************

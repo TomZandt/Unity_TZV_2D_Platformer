@@ -11,13 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c18247d1d3292c4486f0bf2770f47cb, type: 3}
   m_Name: EnemyStats_1
   m_EditorClassIdentifier: 
+  enemyMaxHealth: 8
   enemyHealth: 8
   enemyAttackRadius: 1
   enemyAttackRate: 0.5
   enemyAttackDamage: 1
-  isEnemyFacingRight: 0
+  isEnemyFacingRight: 1
   enemyMoveSmoothFactor: 5
   enemyMoveSpeed: 8
-  target: {x: 25, y: 24, z: 0}
+  playerPosition: {x: 21.69832, y: -12.535, z: 0}
   waypointCompleteDistance: 4
-  playerDetectRadius: 20
+  playerDetectRadius: 10
