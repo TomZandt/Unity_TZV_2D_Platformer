@@ -4,6 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Assets\Reference/
 
 # Visual Studio cache directory
 .vs/
@@ -38,3 +39,4 @@ sysinfo.txt
 # Exclude any PSD/AI source
 *.psd
 *.ai
+
