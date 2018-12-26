@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 909708a47f8e8ed45b5a6ba955d5762b, type: 3}
+  m_Name: SceneLoadout_Tilemap
+  m_EditorClassIdentifier: 
+  sceneName: Tilemap
+  spawnObjects:
+  - {fileID: 11400000, guid: bb45701676b3b4f46a9b9ad2c1cc36ae, type: 2}
+  - {fileID: 11400000, guid: 02195fe5b0f889f4a98290a683484c36, type: 2}
