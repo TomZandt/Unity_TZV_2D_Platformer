@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Health : MonoBehaviour 
+public class Player_Health : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private GameEvent playerDiedEvent;
 
     //****************************************************************************************************
     private void Start()
@@ -19,6 +20,9 @@ public class Player_Health : MonoBehaviour
 
         if (playerStats.playerHealth < 0)
         {
+            if (playerDiedEvent != null)
+                playerDiedEvent.Raise();
+
             Die();
         }
     }

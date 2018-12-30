@@ -8,6 +8,7 @@ public class Manager_SceneSpawner : MonoBehaviour
 {
     public List<SceneLoadout> sceneLoadouts;
 
+    private SceneLoadout currentLoadout = null;
     private GameObject cam;
     private GameObject player;
 
@@ -18,9 +19,9 @@ public class Manager_SceneSpawner : MonoBehaviour
     }
 
     //****************************************************************************************************
-    private void SpawnSceneObjects()
+    public void SpawnSceneObjects()
     {
-        SceneLoadout currentLoadout = sceneLoadouts.Find(x => x.sceneName == SceneManager.GetActiveScene().name);
+        GetCurrentLoadout();
 
         if (currentLoadout)
         {
@@ -45,5 +46,11 @@ public class Manager_SceneSpawner : MonoBehaviour
                 }
             }
         }
+    }
+
+    //****************************************************************************************************
+    private void GetCurrentLoadout()
+    {
+        currentLoadout = sceneLoadouts.Find(x => x.sceneName == SceneManager.GetActiveScene().name);
     }
 }

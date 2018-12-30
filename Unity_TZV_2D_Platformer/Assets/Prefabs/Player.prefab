@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 61784707801057476}
   - component: {fileID: 114169444209071198}
   - component: {fileID: 114882610609645608}
+  - component: {fileID: 114424127842204010}
+  - component: {fileID: 114871683198864630}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -231,6 +233,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: b5379ca1b2c47174e9e4f5a227888395, type: 2}
   ladderGameEvent: {fileID: 11400000, guid: f9a5ee15e4e5cbd4a8c57ccba80f4c8e, type: 2}
+--- !u!114 &114424127842204010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1445977139358610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31e26d5b8af8bbb428105142ef5c5b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7657cecc18c339a45b34f97d53c19848, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114871683198864630}
+        m_MethodName: Destroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114573322721107274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,6 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: b5379ca1b2c47174e9e4f5a227888395, type: 2}
+  playerDiedEvent: {fileID: 11400000, guid: 7657cecc18c339a45b34f97d53c19848, type: 2}
 --- !u!114 &114864494075484384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,6 +300,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: b5379ca1b2c47174e9e4f5a227888395, type: 2}
+--- !u!114 &114871683198864630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1445977139358610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db4a4a0e63629d4b9057592e60b2068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114882610609645608
 MonoBehaviour:
   m_ObjectHideFlags: 1
