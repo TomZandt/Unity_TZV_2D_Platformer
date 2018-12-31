@@ -288,6 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: b5379ca1b2c47174e9e4f5a227888395, type: 2}
   playerDiedEvent: {fileID: 11400000, guid: 7657cecc18c339a45b34f97d53c19848, type: 2}
+  playerHealthChangedEvent: {fileID: 11400000, guid: 83ea758c985517d49a85d181566e79f7,
+    type: 2}
 --- !u!114 &114864494075484384
 MonoBehaviour:
   m_ObjectHideFlags: 1

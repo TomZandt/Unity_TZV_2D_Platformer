@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyThis : MonoBehaviour 
 {
+    //****************************************************************************************************
     public void Destroy()
     {
         Destroy(this.gameObject); 

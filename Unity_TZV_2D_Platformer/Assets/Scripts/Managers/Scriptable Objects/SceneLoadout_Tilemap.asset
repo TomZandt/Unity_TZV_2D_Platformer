@@ -15,3 +15,4 @@ MonoBehaviour:
   spawnObjects:
   - {fileID: 11400000, guid: bb45701676b3b4f46a9b9ad2c1cc36ae, type: 2}
   - {fileID: 11400000, guid: 02195fe5b0f889f4a98290a683484c36, type: 2}
+  - {fileID: 11400000, guid: a5266f40062df96499158257ba30444d, type: 2}

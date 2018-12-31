@@ -6,11 +6,14 @@ public class Player_Health : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private GameEvent playerDiedEvent;
+    [SerializeField] private GameEvent playerHealthChangedEvent;
 
     //****************************************************************************************************
     private void Start()
     {
         playerStats.playerHealth = playerStats.playerMaxHealth;
+
+        playerHealthChangedEvent.Raise();
     }
 
     //****************************************************************************************************
@@ -18,10 +21,11 @@ public class Player_Health : MonoBehaviour
     {
         playerStats.playerHealth -= _damage;
 
+        playerHealthChangedEvent.Raise();
+
         if (playerStats.playerHealth < 0)
         {
-            if (playerDiedEvent != null)
-                playerDiedEvent.Raise();
+            playerDiedEvent.Raise();
 
             Die();
         }
