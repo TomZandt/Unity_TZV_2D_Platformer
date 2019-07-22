@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -16,9 +17,9 @@ MonoBehaviour:
   enemyAttackRadius: 1
   enemyAttackRate: 0.5
   enemyAttackDamage: 1
-  isEnemyFacingRight: 1
-  enemyMoveSmoothFactor: 5
-  enemyMoveSpeed: 8
-  playerPosition: {x: 21.69832, y: -12.535, z: 0}
-  waypointCompleteDistance: 4
-  playerDetectRadius: 10
+  isEnemyFacingRight: 0
+  enemyMoveSmoothFactor: 30
+  enemyMoveSpeed: 2
+  playerPosition: {x: 0, y: 0, z: 0}
+  waypointCompleteDistance: 1
+  playerDetectRadius: 5
