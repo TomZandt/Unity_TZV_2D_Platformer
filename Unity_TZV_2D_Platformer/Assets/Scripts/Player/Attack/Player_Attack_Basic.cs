@@ -38,6 +38,13 @@ public class Player_Attack_Basic : MonoBehaviour
                     _col.GetComponent<Enemy_Health>().TakeDamage(playerStats.playerAttackDamage);
                 }
             }
+            else if (_col.CompareTag("Button"))
+            {
+                if (_col.GetComponent<Button_Health>())
+                {
+                    _col.GetComponent<Button_Health>().TakeDamage(playerStats.playerAttackDamage);
+                }
+            }
         }
     }
 

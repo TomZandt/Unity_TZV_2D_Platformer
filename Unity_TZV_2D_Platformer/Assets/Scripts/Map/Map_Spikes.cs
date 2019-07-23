@@ -29,9 +29,17 @@ public class Map_Spikes : MonoBehaviour
             {
                 if (_col.GetComponent<Player_Health>())
                 {
-                    _col.GetComponent<Player_Health>().TakeDamage(damage);
+                    StartCoroutine(Wait(0.5f, _col));
                 }
             }
         }
+    }
+
+    //****************************************************************************************************
+    IEnumerator Wait(float _time, Collider2D _myCol)
+    {
+        yield return new WaitForSeconds(_time);
+
+        _myCol.GetComponent<Player_Health>().TakeDamage(damage);
     }
 }

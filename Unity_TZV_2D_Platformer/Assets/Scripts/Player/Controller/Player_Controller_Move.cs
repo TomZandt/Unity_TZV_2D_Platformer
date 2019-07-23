@@ -8,7 +8,8 @@ public class Player_Controller_Move : MonoBehaviour
 
     private Rigidbody2D rb;
     private float userInputRawHorizontal;
-    private Vector2 horizontalVelocity = Vector2.zero;  // Used for smoothDamp
+    private Vector2 refVelocity = Vector2.zero;  // Used for smoothDamp
+    private Vector2 externalVel = Vector2.zero;
 
     //****************************************************************************************************
     private void Start()
@@ -31,7 +32,7 @@ public class Player_Controller_Move : MonoBehaviour
         Vector2 moveVect = new Vector2(userInputRawHorizontal * playerStats.playerMoveSpeed, rb.velocity.y);
 
         // Smooth the movement and apply it
-        rb.velocity = Vector2.SmoothDamp(rb.velocity, moveVect, ref horizontalVelocity, playerStats.playerMoveSmoothFactor / 100f);
+        rb.velocity = Vector2.SmoothDamp(rb.velocity, moveVect + externalVel, ref refVelocity, playerStats.playerMoveSmoothFactor / 100f);
     }
 
     //****************************************************************************************************
@@ -59,5 +60,11 @@ public class Player_Controller_Move : MonoBehaviour
 
         // Rotate the player
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    //****************************************************************************************************
+    public void addVelocity(Vector2 _vel)
+    {
+        externalVel = _vel;
     }
 }
