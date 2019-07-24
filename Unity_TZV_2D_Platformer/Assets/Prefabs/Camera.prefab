@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 20486022741115258}
   - component: {fileID: 81327806534127880}
   - component: {fileID: 114954961328504874}
+  - component: {fileID: 6130670675701015491}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461450768245622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.504871, y: 5.760001, z: -18}
+  m_LocalPosition: {x: 15.611112, y: 5.760001, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4624719507425028}
@@ -58,9 +59,9 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 20
+  field of view: 17
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 8.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -121,6 +122,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Cinemachine.CinemachineBrain+VcamActivatedEvent, Cinemachine, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &6130670675701015491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461450768245622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287890c9892fd234c9bafd7b87ed9dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveParallax: 1
+  storedPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1478521808532102
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,10 +237,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5, y: 35.5}
-      - {x: 149.5, y: 35.5}
-      - {x: 149.5, y: -19.5}
-      - {x: 0.5, y: -19.5}
+    - - {x: 0.5, y: 34}
+      - {x: 149.5, y: 34}
+      - {x: 149.5, y: -18}
+      - {x: 0.5, y: -18}
 --- !u!1 &1695995586192616
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +305,7 @@ MonoBehaviour:
   m_ZDamping: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.66
-  m_CameraDistance: 9
+  m_CameraDistance: 8.5
   m_DeadZoneWidth: 0.5
   m_DeadZoneHeight: 0.1
   m_DeadZoneDepth: 0
@@ -365,8 +380,8 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 20
-    OrthographicSize: 9
+    FieldOfView: 17
+    OrthographicSize: 8.5
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
