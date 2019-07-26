@@ -81,3 +81,9 @@ TagManager:
   - name: -1
     uniqueID: 3875590645
     locked: 0
+  - name: -2
+    uniqueID: 3349537067
+    locked: 0
+  - name: -3
+    uniqueID: 4192597237
+    locked: 0
