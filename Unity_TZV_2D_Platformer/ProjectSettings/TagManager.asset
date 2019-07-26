@@ -39,15 +39,45 @@ TagManager:
   - PlayerDrop
   - Platform
   m_SortingLayers:
+  - name: +9
+    uniqueID: 1699859837
+    locked: 0
+  - name: +8
+    uniqueID: 1292524347
+    locked: 0
+  - name: +7
+    uniqueID: 2800190209
+    locked: 0
+  - name: +6
+    uniqueID: 2811736285
+    locked: 0
+  - name: +5
+    uniqueID: 2018627741
+    locked: 0
+  - name: +4
+    uniqueID: 1300366219
+    locked: 0
+  - name: +3
+    uniqueID: 744766537
+    locked: 0
+  - name: +2
+    uniqueID: 2600291717
+    locked: 0
+  - name: +1
+    uniqueID: 3335332133
+    locked: 0
+  - name: 0
+    uniqueID: 663202079
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Water
-    uniqueID: 2116099231
+  - name: Player
+    uniqueID: 3447058287
     locked: 0
-  - name: Level
-    uniqueID: 2344118779
+  - name: Enemy
+    uniqueID: 791291849
     locked: 0
-  - name: Front
-    uniqueID: 3405993979
+  - name: -1
+    uniqueID: 3875590645
     locked: 0
