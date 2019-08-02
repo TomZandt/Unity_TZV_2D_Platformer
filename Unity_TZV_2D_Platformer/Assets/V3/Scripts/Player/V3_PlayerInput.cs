@@ -9,10 +9,10 @@ using UnityEngine;
 public class V3_PlayerInput : MonoBehaviour
 {
     public float horizontal;
-     public bool isJumpPressed;
-     public bool isJumpHeld;
-     public bool isCrouchPressed;
-     public bool isCrouchHeld;    
+    public bool isJumpPressed;
+    public bool isJumpHeld;
+    public bool isCrouchPressed;
+    public bool isCrouchHeld;
 
     private bool readyToClear; // Used in FixedUpdate to ensure code gets current input
 
@@ -55,7 +55,7 @@ public class V3_PlayerInput : MonoBehaviour
         isJumpPressed = false;
         isJumpHeld = false;
         isCrouchPressed = false;
-        isCrouchHeld = false;        
+        isCrouchHeld = false;
 
         readyToClear = false;
     }

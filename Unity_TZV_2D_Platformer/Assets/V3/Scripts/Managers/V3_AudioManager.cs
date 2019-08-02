@@ -1,6 +1,9 @@
+//****************************************************************************************************
+// Reference to: https://www.youtube.com/watch?v=1TSqkC3N3YE&list=PLX2vGYjWbI0REfhDHPpdIBjjrzDHDP-xT&index=17
 // This script is a Manager that controls all of the audio for the project. All audio
 // commands are issued through the static methods of this class. Additionally, this 
 // class creates AudioSource "channels" at runtime and manages them
+//****************************************************************************************************
 
 using UnityEngine;
 using UnityEngine.Audio;
@@ -41,14 +44,14 @@ public class V3_AudioManager : MonoBehaviour
     public AudioMixerGroup playerGroup; //The player mixer group
     public AudioMixerGroup voiceGroup;  //The voice mixer group
 
-    AudioSource ambientSource;			//Reference to the generated ambient Audio Source
-    AudioSource musicSource;            //Reference to the generated music Audio Source
-    AudioSource stingSource;            //Reference to the generated sting Audio Source
-    AudioSource playerSource;           //Reference to the generated player Audio Source
-    AudioSource voiceSource;            //Reference to the generated voice Audio Source
+    private AudioSource ambientSource;	//Reference to the generated ambient Audio Source
+    private AudioSource musicSource;    //Reference to the generated music Audio Source
+    private AudioSource stingSource;    //Reference to the generated sting Audio Source
+    private AudioSource playerSource;   //Reference to the generated player Audio Source
+    private AudioSource voiceSource;    //Reference to the generated voice Audio Source
 
-
-    void Awake()
+    //****************************************************************************************************
+    private void Awake()
     {
         //If an AudioManager exists and it is not this...
         if (current != null && current != this)
@@ -81,7 +84,8 @@ public class V3_AudioManager : MonoBehaviour
         StartLevelAudio();
     }
 
-    void StartLevelAudio()
+    //****************************************************************************************************
+    private void StartLevelAudio()
     {
         //Set the clip for ambient audio, tell it to loop, and then tell it to play
         current.ambientSource.clip = current.ambientClip;
@@ -97,6 +101,7 @@ public class V3_AudioManager : MonoBehaviour
         PlaySceneRestartAudio();
     }
 
+    //****************************************************************************************************
     public static void PlayFootstepAudio()
     {
         //If there is no current AudioManager or the player source is already playing
@@ -112,6 +117,7 @@ public class V3_AudioManager : MonoBehaviour
         current.playerSource.Play();
     }
 
+    //****************************************************************************************************
     public static void PlayCrouchFootstepAudio()
     {
         //If there is no current AudioManager or the player source is already playing
@@ -127,6 +133,7 @@ public class V3_AudioManager : MonoBehaviour
         current.playerSource.Play();
     }
 
+    //****************************************************************************************************
     public static void PlayJumpAudio()
     {
         //If there is no current AudioManager, exit
@@ -142,6 +149,7 @@ public class V3_AudioManager : MonoBehaviour
         current.voiceSource.Play();
     }
 
+    //****************************************************************************************************
     public static void PlayDeathAudio()
     {
         //If there is no current AudioManager, exit
@@ -161,7 +169,7 @@ public class V3_AudioManager : MonoBehaviour
         current.stingSource.Play();
     }
 
-
+    //****************************************************************************************************
     public static void PlayOrbCollectionAudio()
     {
         //If there is no current AudioManager, exit
@@ -177,6 +185,7 @@ public class V3_AudioManager : MonoBehaviour
         current.voiceSource.Play();
     }
 
+    //****************************************************************************************************
     public static void PlaySceneRestartAudio()
     {
         //If there is no current AudioManager, exit
@@ -188,6 +197,7 @@ public class V3_AudioManager : MonoBehaviour
         current.stingSource.Play();
     }
 
+    //****************************************************************************************************
     public static void PlayDoorOpenAudio()
     {
         //If there is no current AudioManager, exit
@@ -199,6 +209,7 @@ public class V3_AudioManager : MonoBehaviour
         current.stingSource.PlayDelayed(1f);
     }
 
+    //****************************************************************************************************
     public static void PlayWonAudio()
     {
         //If there is no current AudioManager, exit

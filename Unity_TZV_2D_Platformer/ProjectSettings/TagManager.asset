@@ -27,7 +27,7 @@ TagManager:
   - EnemyWeapon
   - BossWeakPoint
   - Bullet
-  - 
+  - Trap
   - 
   - 
   - 
@@ -75,6 +75,9 @@ TagManager:
     locked: 0
   - name: Tilemap Detail
     uniqueID: 2457135597
+    locked: 0
+  - name: Interactable
+    uniqueID: 1735115147
     locked: 0
   - name: Tilemap Platforms
     uniqueID: 3968447051

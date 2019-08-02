@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class V3_SceneFader : MonoBehaviour
 {
-    Animator anim;      //Reference to the Animator component
-    int fadeParamID;    //The ID of the animator parameter that fades the image
+    private Animator anim;      // Reference to the Animator component
+    private int fadeParamID;    // The ID of the animator parameter that fades the image
 
-    void Start()
+    //****************************************************************************************************
+    private void Start()
     {
         //Get reference to Animator component
         anim = GetComponent<Animator>();
@@ -20,6 +21,7 @@ public class V3_SceneFader : MonoBehaviour
         V3_GameManager.RegisterSceneFader(this);
     }
 
+    //****************************************************************************************************
     public void FadeSceneOut()
     {
         //Play the animation that fades the UI

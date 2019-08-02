@@ -9,15 +9,15 @@ public class V3_UIManager : MonoBehaviour
     //This class holds a static reference to itself to ensure that there will only be
     //one in existence. This is often referred to as a "singleton" design pattern. Other
     //scripts access this one through its public static methods
-    static V3_UIManager current;
+    private static V3_UIManager current;
 
     public TextMeshProUGUI orbText;         //Text element showing number of orbs
     public TextMeshProUGUI timeText;        //Text element showing amount of time
     public TextMeshProUGUI deathText;       //Text element showing number or deaths
     public TextMeshProUGUI gameOverText;    //Text element showing the Game Over message
 
-
-    void Awake()
+    //****************************************************************************************************
+    private void Awake()
     {
         //If an UIManager exists and it is not this...
         if (current != null && current != this)
@@ -32,6 +32,7 @@ public class V3_UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    //****************************************************************************************************
     public static void UpdateOrbUI(int orbCount)
     {
         //If there is no current UIManager, exit
@@ -42,6 +43,7 @@ public class V3_UIManager : MonoBehaviour
         current.orbText.text = orbCount.ToString();
     }
 
+    //****************************************************************************************************
     public static void UpdateTimeUI(float time)
     {
         //If there is no current UIManager, exit
@@ -56,6 +58,7 @@ public class V3_UIManager : MonoBehaviour
         current.timeText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
     }
 
+    //****************************************************************************************************
     public static void UpdateDeathUI(int deathCount)
     {
         //If there is no current UIManager, exit
@@ -66,6 +69,7 @@ public class V3_UIManager : MonoBehaviour
         current.deathText.text = deathCount.ToString();
     }
 
+    //****************************************************************************************************
     public static void DisplayGameOverText()
     {
         //If there is no current UIManager, exit
