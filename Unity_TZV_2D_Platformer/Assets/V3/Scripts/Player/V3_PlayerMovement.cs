@@ -1,8 +1,12 @@
 //****************************************************************************************************
 // Reference to https://www.youtube.com/watch?v=83xn7QYpS_s&list=PLX2vGYjWbI0REfhDHPpdIBjjrzDHDP-xT&index=6
+// Reference to http://dotween.demigiant.com/getstarted.php
+// Reference to https://www.youtube.com/watch?v=STyY26a_dPY
 //****************************************************************************************************
 
 using UnityEngine;
+using System.Collections;
+using DG.Tweening;
 
 public class V3_PlayerMovement : MonoBehaviour
 {
@@ -35,6 +39,10 @@ public class V3_PlayerMovement : MonoBehaviour
     [Header("Crouch Properties")]
     public float crouchSizeDivider = 2f;    // Size of crouch divider
 
+    [Header("Dash Properties")]
+    public float dashForce = 30f;
+    public float dashWaitTime = 1f;
+
     [Header("Status Flags")]
     public bool isOnGround;
     public bool isJumping;
@@ -51,6 +59,7 @@ public class V3_PlayerMovement : MonoBehaviour
     private float playerHeight;
     private float originalXScale;
     private int direction = 1;              // Player facing direction
+    private bool canDash = true;
 
     private Vector2 colliderStandSize;      // Size of the standing collider
     private Vector2 colliderStandOffset;    // Offset of the standing collider
@@ -84,6 +93,7 @@ public class V3_PlayerMovement : MonoBehaviour
         PhysicsCheck();
         GroundMovement();
         AirMovement();
+        CheckForDash();
     }
 
     //****************************************************************************************************
@@ -121,7 +131,7 @@ public class V3_PlayerMovement : MonoBehaviour
         RaycastHit2D wallCheck = Raycast(new Vector2(footOffset * direction, eyeHeight), grabDir, grabDistance);
 
         // If the player is off the ground AND is not hanging AND is falling AND found a ledge AND found a wall AND the grab is NOT blocked...
-        if (!isOnGround && !isHanging && rigidBody.velocity.y < 0f && ledgeCheck && wallCheck && !blockedCheck)
+        if (!isOnGround && !isHanging && rigidBody.velocity.y < 0f && ledgeCheck && wallCheck && !blockedCheck && playerInput.isWallGrabHeld)
         {
             // ...we have a ledge grab. Record the current position...
             Vector3 pos = transform.position;
@@ -206,8 +216,11 @@ public class V3_PlayerMovement : MonoBehaviour
         // If the player is currently hanging...
         if (isHanging)
         {
-            // If crouch is pressed...
-            if (playerInput.isCrouchPressed)
+            // If dash is pressed
+            CheckForDash();
+
+            // If player lets go
+            if (!playerInput.isWallGrabHeld)
             {
                 // ...let go
                 isHanging = false;
@@ -233,7 +246,7 @@ public class V3_PlayerMovement : MonoBehaviour
             }
         }
 
-        //If the jump key is pressed AND the player isn't already jumping AND EITHER the player is on the ground or within the coyote time window...
+        // If the jump key is pressed AND the player isn't already jumping AND EITHER the player is on the ground or within the coyote time window...
         if (playerInput.isJumpPressed && !isJumping && (isOnGround || coyoteTime > Time.time))
         {
             // ...check to see if crouching AND not blocked. If so
@@ -245,7 +258,7 @@ public class V3_PlayerMovement : MonoBehaviour
                 rigidBody.AddForce(new Vector2(0f, crouchJumpBoost), ForceMode2D.Impulse);
             }
 
-            // ...The player is no longer on the groud and is jumping
+            // ...The player is no longer on the ground and is jumping
             isOnGround = false;
             isJumping = true;
 
@@ -282,7 +295,7 @@ public class V3_PlayerMovement : MonoBehaviour
     }
 
     //****************************************************************************************************
-    void FlipCharacterDirection()
+    private void FlipCharacterDirection()
     {
         // Turn the character by flipping the direction
         direction *= -1;
@@ -298,7 +311,7 @@ public class V3_PlayerMovement : MonoBehaviour
     }
 
     //****************************************************************************************************
-    void Crouch()
+    private void Crouch()
     {
         // The player is crouching
         isCrouching = true;
@@ -309,7 +322,7 @@ public class V3_PlayerMovement : MonoBehaviour
     }
 
     //****************************************************************************************************
-    void StandUp()
+    private void StandUp()
     {
         // If the player's head is blocked, they can't stand so exit
         if (isHeadBlocked)
@@ -324,15 +337,48 @@ public class V3_PlayerMovement : MonoBehaviour
     }
 
     //****************************************************************************************************
+    private void CheckForDash()
+    {
+        // If dash is pressed
+        if (playerInput.isDashPressed && canDash)
+        {
+            if (isHanging)
+            {
+                isHanging = false;
+                rigidBody.bodyType = RigidbodyType2D.Dynamic;
+                FlipCharacterDirection();
+            }
+
+            canDash = false;
+            DOVirtual.Float(14f, 0f, 0.4f, RigidBodyDrag);
+            rigidBody.AddForce(new Vector2(direction * dashForce * 100f, 0f), ForceMode2D.Force);
+            StartCoroutine(DashTime());
+        }
+    }
+
+    //****************************************************************************************************
+    private void RigidBodyDrag(float _drag)
+    {
+        rigidBody.drag = _drag;
+    }
+
+    //****************************************************************************************************
+    private IEnumerator DashTime()
+    {
+        yield return new WaitForSeconds(dashWaitTime);
+        canDash = true;
+    }
+
+    //****************************************************************************************************
     //These two Raycast methods wrap the Physics2D.Raycast() and provide some extra functionality
-    RaycastHit2D Raycast(Vector2 offset, Vector2 rayDirection, float length)
+    private RaycastHit2D Raycast(Vector2 offset, Vector2 rayDirection, float length)
     {
         // Call the overloaded Raycast() method using the ground layermask and return the results
         return Raycast(offset, rayDirection, length, groundLayer);
     }
 
     //****************************************************************************************************
-    RaycastHit2D Raycast(Vector2 offset, Vector2 rayDirection, float length, LayerMask mask)
+    private RaycastHit2D Raycast(Vector2 offset, Vector2 rayDirection, float length, LayerMask mask)
     {
         // Record the player's position
         Vector2 pos = transform.position;
