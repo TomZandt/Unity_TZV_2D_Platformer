@@ -191,14 +191,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawDebugRaycasts: 0
-  speed: 8
+  useAcc: 1
+  speed: 11
+  acceleration: 65
   crouchSpeedDivisor: 3
   coyoteDuration: 0.05
   maxFallSpeed: -25
-  jumpForce: 6.3
+  jumpForce: 8
   crouchJumpBoost: 2.5
-  hangingJumpForce: 15
-  jumpHoldForce: 1.9
+  hangingJumpForce: 16
+  jumpHoldForce: 2.3
   jumpHoldDuration: 0.1
   footOffset: 0.4
   eyeHeight: 1.5

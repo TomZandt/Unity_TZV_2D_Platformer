@@ -18494,6 +18494,21 @@ PrefabInstance:
       propertyPath: m_ApplyToSortingLayers.Array.data[4]
       value: 1735115147
       objectReference: {fileID: 0}
+    - target: {fileID: 5187049726642982535, guid: 8448171a2b0c13b4da4bb875805b1fd6,
+        type: 3}
+      propertyPath: movementAction.m_Id
+      value: 552edb0a-179a-4294-9fe9-b51c2d2b172e
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187049726642982535, guid: 8448171a2b0c13b4da4bb875805b1fd6,
+        type: 3}
+      propertyPath: movementAction.m_Name
+      value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187049726642982535, guid: 8448171a2b0c13b4da4bb875805b1fd6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8448171a2b0c13b4da4bb875805b1fd6, type: 3}
 --- !u!1 &1891988414
@@ -36024,7 +36039,7 @@ PrefabInstance:
     - target: {fileID: 4591476846865019659, guid: a3014d8f639645e4587fdb8ff5daf9e1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -77.34
+      value: -77.34009
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3014d8f639645e4587fdb8ff5daf9e1, type: 3}
@@ -36479,7 +36494,7 @@ PrefabInstance:
     - target: {fileID: 8935722362108001510, guid: e79f36ee362992f4b9890ca5f98add9e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -37.579956
+      value: -37.58008
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e79f36ee362992f4b9890ca5f98add9e, type: 3}

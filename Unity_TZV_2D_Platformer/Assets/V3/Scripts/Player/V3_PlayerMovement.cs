@@ -7,18 +7,20 @@ using UnityEngine;
 public class V3_PlayerMovement : MonoBehaviour
 {
     public bool drawDebugRaycasts = true;
+    public bool useAcc = true;
 
     [Header("Movement Properties")]
-    public float speed = 8f;                // Player speed
+    public float speed = 11f;                // Player speed
+    public float acceleration = 65f;
     public float crouchSpeedDivisor = 3f;   // Speed multiplier when crouching
     public float coyoteDuration = 0.05f;    // How long the player can jump after falling
     public float maxFallSpeed = -25f;       // Max fall speed
 
     [Header("Jump Properties")]
-    public float jumpForce = 6.3f;          // Initial jump force
+    public float jumpForce = 8.0f;          // Initial jump force
     public float crouchJumpBoost = 2.5f;    // Jump boost force
-    public float hangingJumpForce = 15f;    // Wall jump force
-    public float jumpHoldForce = 1.9f;      // Force when holding
+    public float hangingJumpForce = 16f;    // Wall jump force
+    public float jumpHoldForce = 2.3f;      // Force when holding
     public float jumpHoldDuration = 0.1f;   // How long jump hold can be held
 
     [Header("Environment Check Properties")]
@@ -179,8 +181,17 @@ public class V3_PlayerMovement : MonoBehaviour
             xVelocity /= crouchSpeedDivisor;
         }
 
-        // Apply the desired velocity 
-        rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
+        // Apply X Velocity
+        if (useAcc)
+        {
+            // Apply the desired velocity & Acceleration
+            rigidBody.velocity = new Vector2(Mathf.MoveTowards(rigidBody.velocity.x, xVelocity, acceleration * Time.deltaTime), rigidBody.velocity.y);
+        }
+        else
+        {
+            // Apply the desired velocity 
+            rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
+        }
 
         // If the player is on the ground, extend the coyote time window
         if (isOnGround)
