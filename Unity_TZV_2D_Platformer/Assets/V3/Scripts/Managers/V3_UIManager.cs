@@ -33,6 +33,30 @@ public class V3_UIManager : MonoBehaviour
     }
 
     //****************************************************************************************************
+    private void Update()
+    {
+        if(orbText == null)
+        {
+            orbText = GameObject.FindGameObjectWithTag("OrbUI").GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        if(timeText == null)
+        {
+            timeText = GameObject.FindGameObjectWithTag("TimeUI").GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        if (deathText == null)
+        {
+            deathText = GameObject.FindGameObjectWithTag("DeathsUI").GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        if (gameOverText == null)
+        {
+            gameOverText = GameObject.FindGameObjectWithTag("GameOverUI").GetComponentInChildren<TextMeshProUGUI>();
+        }
+    }
+
+    //****************************************************************************************************
     public static void UpdateOrbUI(int orbCount)
     {
         //If there is no current UIManager, exit
@@ -78,5 +102,6 @@ public class V3_UIManager : MonoBehaviour
 
         //Show the game over text
         current.gameOverText.enabled = true;
+        current.gameOverText.gameObject.SetActive(true);
     }
 }

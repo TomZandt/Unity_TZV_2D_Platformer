@@ -199,7 +199,7 @@ MonoBehaviour:
   maxFallSpeed: -25
   jumpForce: 8
   crouchJumpBoost: 2.5
-  hangingJumpForce: 16
+  hangingJumpForce: 18.5
   jumpHoldForce: 2.3
   jumpHoldDuration: 0.1
   footOffset: 0.4
@@ -207,16 +207,19 @@ MonoBehaviour:
   reachOffset: 0.7
   headClearance: 0.5
   groundDistance: 0.2
-  grabDistance: 0.5
+  grabDistance: 0.6
   groundLayer:
     serializedVersion: 2
     m_Bits: 2147483648
   crouchSizeDivider: 2
+  dashForce: 30
+  dashWaitTime: 1
   isOnGround: 0
   isJumping: 0
   isHanging: 0
   isCrouching: 0
   isHeadBlocked: 0
+  sprite: {fileID: 1726102145257529713}
 --- !u!114 &5187049726642982535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,10 +233,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontal: 0
+  freelookHorizontal: 0
+  freelookVertical: 0
   isJumpPressed: 0
   isJumpHeld: 0
   isCrouchPressed: 0
   isCrouchHeld: 0
+  isWallGrabHeld: 0
+  isDashPressed: 0
 --- !u!114 &5187049726642982534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5187049727158152146}
+  - component: {fileID: 3857881473220342128}
   m_Layer: 0
   m_Name: Player Camera Follow Target
   m_TagString: Untagged
@@ -277,6 +285,23 @@ Transform:
   m_Father: {fileID: 5187049726642982540}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3857881473220342128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187049727158152147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db0308e0bfbac7b47852f39b9a0d8cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 5187049726642982540}
+  offset: {x: 0, y: 2, z: 0}
+  playerInput: {fileID: 5187049726642982535}
+  horizontalFreelookOffset: 7
+  verticalFreelookOffset: 7
 --- !u!1 &5187049727710605306
 GameObject:
   m_ObjectHideFlags: 0

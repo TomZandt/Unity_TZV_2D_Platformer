@@ -50,6 +50,8 @@ public class V3_PlayerMovement : MonoBehaviour
     public bool isCrouching;
     public bool isHeadBlocked;
 
+    public SpriteRenderer sprite;
+
     private V3_PlayerInput playerInput;
     private BoxCollider2D bodyCollider;
     private Rigidbody2D rigidBody;
@@ -189,6 +191,17 @@ public class V3_PlayerMovement : MonoBehaviour
         if (isCrouching)
         {
             xVelocity /= crouchSpeedDivisor;
+
+            sprite.transform.localScale = new Vector3(1f, 0.9f, 1f);
+            sprite.transform.localPosition = new Vector3(0f, 0.45f, 0f);
+        }
+        else
+        {
+            if (sprite.transform.localScale != new Vector3(1f, 1.8f, 1f) || sprite.transform.localPosition != new Vector3(0f, 0.9f, 0f))
+            {
+                sprite.transform.localScale = new Vector3(1f, 1.8f, 1f);
+                sprite.transform.localPosition = new Vector3(0f, 0.9f, 0f);
+            }
         }
 
         // Apply X Velocity

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Enemy
   - Button
+  - OrbUI
+  - GameOverUI
+  - TimeUI
+  - DeathsUI
   layers:
   - Default
   - TransparentFX
@@ -93,6 +97,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 791291849
+    locked: 0
+  - name: Tilemap Foreground
+    uniqueID: 3972521525
     locked: 0
   - name: -1
     uniqueID: 3875590645
