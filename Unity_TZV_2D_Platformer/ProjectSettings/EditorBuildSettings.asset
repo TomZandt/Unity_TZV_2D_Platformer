@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Asset Store/2D Game kit/Scenes/UI/Loading.unity
     guid: ebc4647ff02971c4ba1b207af066be4d
   - enabled: 1
+    path: Assets/V3/Scenes/V3_Menu_Start.unity
+    guid: 39eb7b35452b064478825c726d088a38
+  - enabled: 1
     path: Assets/V3/Scenes/V3_LVL_1.unity
     guid: bfcff571cba8fde4da58696f362652bf
   - enabled: 1

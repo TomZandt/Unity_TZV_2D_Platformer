@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Rewired;
 using Rewired.UI.ControlMapper;
+using UnityEngine.SceneManagement;
 
 public class V3_UIManager : MonoBehaviour
 {
@@ -65,11 +66,13 @@ public class V3_UIManager : MonoBehaviour
         if (deathText == null)
         {
             deathText = GameObject.FindGameObjectWithTag("DeathsUI").GetComponentInChildren<TextMeshProUGUI>();
+
         }
 
         if (gameOverText == null)
         {
             gameOverText = GameObject.FindGameObjectWithTag("GameOverUI").GetComponentInChildren<TextMeshProUGUI>();
+
         }
     }
 
@@ -77,7 +80,7 @@ public class V3_UIManager : MonoBehaviour
     public static void UpdateOrbUI(int orbCount)
     {
         //If there is no current UIManager, exit
-        if (current == null)
+        if (current == null || current.orbText == null)
             return;
 
         //Update the text orb element
@@ -88,7 +91,7 @@ public class V3_UIManager : MonoBehaviour
     public static void UpdateTimeUI(float time)
     {
         //If there is no current UIManager, exit
-        if (current == null)
+        if (current == null || current.timeText == null)
             return;
 
         //Take the time and convert it into the number of minutes and seconds
@@ -103,7 +106,7 @@ public class V3_UIManager : MonoBehaviour
     public static void UpdateDeathUI(int deathCount)
     {
         //If there is no current UIManager, exit
-        if (current == null)
+        if (current == null || current.deathText == null)
             return;
 
         //update the player death count element
@@ -114,7 +117,7 @@ public class V3_UIManager : MonoBehaviour
     public static void DisplayGameOverText()
     {
         //If there is no current UIManager, exit
-        if (current == null)
+        if (current == null || current.gameOverText == null)
             return;
 
         //Show the game over text
@@ -126,7 +129,7 @@ public class V3_UIManager : MonoBehaviour
     private void CheckForPause()
     {
         // Toggle game is paused
-        if (player.GetButtonDown("Pause"))
+        if (player.GetButtonDown("Pause") && SceneManager.GetActiveScene().buildIndex != 0)
         {
             if (canPause)
             {
