@@ -60,7 +60,7 @@ public class V3_PlayerInput : MonoBehaviour
     }
 
     //****************************************************************************************************
-    private void ClearInput()
+    public void ClearInput()
     {
         // If FixedUpdate hasnt happened yet
         if (!readyToClear)

@@ -3,6 +3,8 @@
 
 using UnityEngine;
 using TMPro;
+using Rewired;
+using Rewired.UI.ControlMapper;
 
 public class V3_UIManager : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class V3_UIManager : MonoBehaviour
     public TextMeshProUGUI timeText;        //Text element showing amount of time
     public TextMeshProUGUI deathText;       //Text element showing number or deaths
     public TextMeshProUGUI gameOverText;    //Text element showing the Game Over message
+
+    private ControlMapper controlMapper;
+    private Player player;
+    private V3_PlayerInput playerInput;
+    private bool canPause = true;
 
     //****************************************************************************************************
     private void Awake()
@@ -30,17 +37,27 @@ public class V3_UIManager : MonoBehaviour
         //This is the current UIManager and it should persist between scene loads
         current = this;
         DontDestroyOnLoad(gameObject);
+
+        // Assign the rewired player
+        player = ReInput.players.GetPlayer(0); // 0 default for first player
+
+        playerInput = FindObjectOfType<V3_PlayerInput>();
+        controlMapper = FindObjectOfType<ControlMapper>();
+
+        canPause = true;
     }
 
     //****************************************************************************************************
     private void Update()
     {
-        if(orbText == null)
+        CheckForPause();
+
+        if (orbText == null)
         {
             orbText = GameObject.FindGameObjectWithTag("OrbUI").GetComponentInChildren<TextMeshProUGUI>();
         }
 
-        if(timeText == null)
+        if (timeText == null)
         {
             timeText = GameObject.FindGameObjectWithTag("TimeUI").GetComponentInChildren<TextMeshProUGUI>();
         }
@@ -103,5 +120,29 @@ public class V3_UIManager : MonoBehaviour
         //Show the game over text
         current.gameOverText.enabled = true;
         current.gameOverText.gameObject.SetActive(true);
+    }
+
+    //****************************************************************************************************
+    private void CheckForPause()
+    {
+        // Toggle game is paused
+        if (player.GetButtonDown("Pause"))
+        {
+            if (canPause)
+            {
+                Time.timeScale = 0;
+                canPause = false;
+
+                controlMapper.Open();
+            }
+            else
+            {
+                controlMapper.Close(true);
+
+                playerInput.ClearInput();
+                Time.timeScale = 1;
+                canPause = true;
+            }
+        }
     }
 }
