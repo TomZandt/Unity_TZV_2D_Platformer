@@ -190,35 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0965b624e37474db067a4011ce9cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawDebugRaycasts: 0
-  useAcc: 1
-  speed: 11
-  acceleration: 65
-  crouchSpeedDivisor: 3
-  coyoteDuration: 0.05
-  maxFallSpeed: -25
-  jumpForce: 8
-  crouchJumpBoost: 2.5
-  hangingJumpForce: 18.5
-  jumpHoldForce: 2.3
-  jumpHoldDuration: 0.1
-  footOffset: 0.4
-  eyeHeight: 1.5
-  reachOffset: 0.7
-  headClearance: 0.5
-  groundDistance: 0.2
-  grabDistance: 0.6
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 2147483648
-  crouchSizeDivider: 2
-  dashForce: 30
-  dashWaitTime: 1
-  isOnGround: 0
-  isJumping: 0
-  isHanging: 0
-  isCrouching: 0
-  isHeadBlocked: 0
+  playerSO: {fileID: 11400000, guid: cc99c45368de9a344b61a22836606f4c, type: 2}
+  inputSO: {fileID: 11400000, guid: 923a6db54b3b04c4fb395791b346a14b, type: 2}
   sprite: {fileID: 1726102145257529713}
 --- !u!114 &5187049726642982535
 MonoBehaviour:
@@ -232,15 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ce49d0247abe3449318ebd9a32bc51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontal: 0
-  freelookHorizontal: 0
-  freelookVertical: 0
-  isJumpPressed: 0
-  isJumpHeld: 0
-  isCrouchPressed: 0
-  isCrouchHeld: 0
-  isWallGrabHeld: 0
-  isDashPressed: 0
+  inputSO: {fileID: 11400000, guid: 923a6db54b3b04c4fb395791b346a14b, type: 2}
 --- !u!114 &5187049726642982534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db0308e0bfbac7b47852f39b9a0d8cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputSO: {fileID: 11400000, guid: 923a6db54b3b04c4fb395791b346a14b, type: 2}
   playerTransform: {fileID: 5187049726642982540}
   offset: {x: 0, y: 2, z: 0}
   playerInput: {fileID: 5187049726642982535}

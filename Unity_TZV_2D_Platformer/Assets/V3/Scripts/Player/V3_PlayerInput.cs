@@ -11,15 +11,7 @@ using Rewired;
 
 public class V3_PlayerInput : MonoBehaviour
 {
-    [HideInInspector] public float horizontal;
-    [HideInInspector] public float freelookHorizontal;
-    [HideInInspector] public float freelookVertical;
-    [HideInInspector] public bool isJumpPressed;
-    [HideInInspector] public bool isJumpHeld;
-    [HideInInspector] public bool isCrouchPressed;
-    [HideInInspector] public bool isCrouchHeld;
-    [HideInInspector] public bool isWallGrabHeld;
-    [HideInInspector] public bool isDashPressed;
+    public V3_SO_Input inputSO;
 
     private bool readyToClear;  // Used in FixedUpdate to ensure code gets current input
     private Player player;      // Rewired player
@@ -27,6 +19,11 @@ public class V3_PlayerInput : MonoBehaviour
     //****************************************************************************************************
     private void Awake()
     {
+        if (inputSO == null)
+        {
+            Debug.LogError("No SO Found - TZV V3_PlayerInput");
+        }
+
         // Assign the rewired player
         player = ReInput.players.GetPlayer(0); // 0 default for first player
     }
@@ -47,9 +44,9 @@ public class V3_PlayerInput : MonoBehaviour
         ProcessInput();
 
         // Scale input to -1 to 1
-        horizontal = Mathf.Clamp(horizontal, -1f, 1f);
-        freelookHorizontal = Mathf.Clamp(freelookHorizontal, -1f, 1f);
-        freelookVertical = Mathf.Clamp(freelookVertical, -1f, 1f);
+        inputSO.horizontal = Mathf.Clamp(inputSO.horizontal, -1f, 1f);
+        inputSO.freelookHorizontal = Mathf.Clamp(inputSO.freelookHorizontal, -1f, 1f);
+        inputSO.freelookVertical = Mathf.Clamp(inputSO.freelookVertical, -1f, 1f);
     }
 
     //****************************************************************************************************
@@ -69,15 +66,15 @@ public class V3_PlayerInput : MonoBehaviour
         }
 
         // Clear all input
-        horizontal = 0f;
-        freelookHorizontal = 0f;
-        freelookVertical = 0f;
-        isJumpPressed = false;
-        isJumpHeld = false;
-        isCrouchPressed = false;
-        isCrouchHeld = false;
-        isWallGrabHeld = false;
-        isDashPressed = false;
+        inputSO.horizontal = 0f;
+        inputSO.freelookHorizontal = 0f;
+        inputSO.freelookVertical = 0f;
+        inputSO.isJumpPressed = false;
+        inputSO.isJumpHeld = false;
+        inputSO.isCrouchPressed = false;
+        inputSO.isCrouchHeld = false;
+        inputSO.isWallGrabHeld = false;
+        inputSO.isDashPressed = false;
 
         // Not ready
         readyToClear = false;
@@ -89,19 +86,19 @@ public class V3_PlayerInput : MonoBehaviour
         // USing accumulation to accumulate inputs
 
         // Axis
-        horizontal += player.GetAxis("Move Horizontal");
-        freelookHorizontal += player.GetAxis("Freelook Horizontal");
-        freelookVertical += player.GetAxis("Freelook Vertical");
+        inputSO.horizontal += player.GetAxis("Move Horizontal");
+        inputSO.freelookHorizontal += player.GetAxis("Freelook Horizontal");
+        inputSO.freelookVertical += player.GetAxis("Freelook Vertical");
 
         // Buttons
-        isJumpPressed = isJumpPressed || player.GetButtonDown("Jump");
-        isJumpHeld = isJumpHeld || player.GetButton("Jump");
+        inputSO.isJumpPressed = inputSO.isJumpPressed || player.GetButtonDown("Jump");
+        inputSO.isJumpHeld = inputSO.isJumpHeld || player.GetButton("Jump");
 
-        isCrouchPressed = isCrouchPressed || player.GetButtonDown("Crouch");
-        isCrouchHeld = isCrouchHeld || player.GetButton("Crouch");
+        inputSO.isCrouchPressed = inputSO.isCrouchPressed || player.GetButtonDown("Crouch");
+        inputSO.isCrouchHeld = inputSO.isCrouchHeld || player.GetButton("Crouch");
 
-        isWallGrabHeld = isWallGrabHeld || player.GetButton("Wall Grab");
+        inputSO.isWallGrabHeld = inputSO.isWallGrabHeld || player.GetButton("Wall Grab");
 
-        isDashPressed = isDashPressed || player.GetButtonDown("Dash");
+        inputSO.isDashPressed = inputSO.isDashPressed || player.GetButtonDown("Dash");
     }
 }

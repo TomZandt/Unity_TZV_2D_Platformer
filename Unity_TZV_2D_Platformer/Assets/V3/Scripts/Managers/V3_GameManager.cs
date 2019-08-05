@@ -14,7 +14,7 @@ public class V3_GameManager : MonoBehaviour
     //This class holds a static reference to itself to ensure that there will only be
     //one in existence. This is often referred to as a "singleton" design pattern. Other
     //scripts access this one through its public static methods
-    private static V3_GameManager current;
+    private static V3_GameManager instance;
 
     public float deathSequenceDuration = 1.5f;  //How long player death takes before restarting
 
@@ -30,7 +30,7 @@ public class V3_GameManager : MonoBehaviour
     private void Awake()
     {
         // If a Game Manager exists and this isn't it...
-        if (current != null && current != this)
+        if (instance != null && instance != this)
         {
             // ...destroy this and exit. There can only be one Game Manager
             Destroy(gameObject);
@@ -38,7 +38,7 @@ public class V3_GameManager : MonoBehaviour
         }
 
         // Set this as the current game manager
-        current = this;
+        instance = this;
 
         // Create out collection to hold the orbs
         orbs = new List<V3_Orb>();
@@ -65,58 +65,58 @@ public class V3_GameManager : MonoBehaviour
     public static bool IsGameOver()
     {
         // If there is no current Game Manager, return false
-        if (current == null)
+        if (instance == null)
         {
             return false;
         }
 
         // Return the state of the game
-        return current.isGameOver;
+        return instance.isGameOver;
     }
 
     //****************************************************************************************************
     public static void RegisterSceneFader(V3_SceneFader fader)
     {
         // If there is no current Game Manager, exit
-        if (current == null)
+        if (instance == null)
         {
             return;
         }
 
         // Record the scene fader reference
-        current.sceneFader = fader;
+        instance.sceneFader = fader;
     }
 
     //****************************************************************************************************
     public static void RegisterDoor(V3_Door door)
     {
         // If there is no current Game Manager, exit
-        if (current == null)
+        if (instance == null)
         {
             return;
         }
 
         // Record the door reference
-        current.lockedDoor = door;
+        instance.lockedDoor = door;
     }
 
     //****************************************************************************************************
     public static void RegisterOrb(V3_Orb orb)
     {
          // If there is no current Game Manager, exit
-        if (current == null)
+        if (instance == null)
         {
             return;
         }
 
         // If the orb collection doesn't already contain this orb, add it
-        if (!current.orbs.Contains(orb))
+        if (!instance.orbs.Contains(orb))
         {
-            current.orbs.Add(orb);
+            instance.orbs.Add(orb);
         }
 
         // Tell the UIManager to update the orb text
-        V3_UIManager.UpdateOrbUI(current.orbs.Count);
+        V3_UIManager.UpdateOrbUI(instance.orbs.Count);
     }
 
     //****************************************************************************************************
@@ -126,28 +126,28 @@ public class V3_GameManager : MonoBehaviour
         Debug.Log("Player Picked up Orb");
 
         // If there is no current Game Manager, exit
-        if (current == null)
+        if (instance == null)
         {
             return;
         }
 
         // If the orbs collection doesn't have this orb, exit
-        if (!current.orbs.Contains(orb))
+        if (!instance.orbs.Contains(orb))
         {
             return;
         }
 
         // Remove the collected orb
-        current.orbs.Remove(orb);
+        instance.orbs.Remove(orb);
 
         // If there are no more orbs, tell the door to open
-        if (current.orbs.Count == 0)
+        if (instance.orbs.Count == 0)
         {
-            current.lockedDoor.Open();
+            instance.lockedDoor.Open();
         }
 
         // Tell the UIManager to update the orb text
-        V3_UIManager.UpdateOrbUI(current.orbs.Count);
+        V3_UIManager.UpdateOrbUI(instance.orbs.Count);
     }
 
     //****************************************************************************************************
@@ -157,23 +157,23 @@ public class V3_GameManager : MonoBehaviour
         Debug.Log("Player Died");
 
         // If there is no current Game Manager, exit
-        if (current == null)
+        if (instance == null)
         {
             return;
         }
 
         // Increment the number of player deaths and tell the UIManager
-        current.numberOfDeaths++;
-        V3_UIManager.UpdateDeathUI(current.numberOfDeaths);
+        instance.numberOfDeaths++;
+        V3_UIManager.UpdateDeathUI(instance.numberOfDeaths);
 
         // If we have a scene fader, tell it to fade the scene out
-        if (current.sceneFader != null)
+        if (instance.sceneFader != null)
         {
-            current.sceneFader.FadeSceneOut();
+            instance.sceneFader.FadeSceneOut();
         }
 
         // Invoke the RestartScene() method after a delay
-        current.Invoke("RestartScene", current.deathSequenceDuration);
+        instance.Invoke("RestartScene", instance.deathSequenceDuration);
     }
 
     //****************************************************************************************************
@@ -183,13 +183,13 @@ public class V3_GameManager : MonoBehaviour
         Debug.Log("Player Won");
 
         // If there is no current Game Manager, exit
-        if (current == null)
+        if (instance == null)
         {
             return;
         }
 
         // The game is now over
-        current.isGameOver = true;
+        instance.isGameOver = true;
 
         // Tell UI Manager to show the game over text and tell the Audio Manager to play game over audio
         V3_UIManager.DisplayGameOverText();

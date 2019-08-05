@@ -10,49 +10,11 @@ using DG.Tweening;
 
 public class V3_PlayerMovement : MonoBehaviour
 {
-    public bool drawDebugRaycasts = true;
-    public bool useAcc = true;
+    public V3_SO_Player playerSO;
+    public V3_SO_Input inputSO;
 
-    [Header("Movement Properties")]
-    public float speed = 11f;                // Player speed
-    public float acceleration = 65f;
-    public float crouchSpeedDivisor = 3f;   // Speed multiplier when crouching
-    public float coyoteDuration = 0.05f;    // How long the player can jump after falling
-    public float maxFallSpeed = -25f;       // Max fall speed
-
-    [Header("Jump Properties")]
-    public float jumpForce = 8.0f;          // Initial jump force
-    public float crouchJumpBoost = 2.5f;    // Jump boost force
-    public float hangingJumpForce = 16f;    // Wall jump force
-    public float jumpHoldForce = 2.3f;      // Force when holding
-    public float jumpHoldDuration = 0.1f;   // How long jump hold can be held
-
-    [Header("Environment Check Properties")]
-    public float footOffset = 0.4f;         // X offset for foot raycasts
-    public float eyeHeight = 1.5f;          // Height of wall check
-    public float reachOffset = 0.7f;        // X Offset for wall grabbing
-    public float headClearance = 0.5f;      // Space needed above players head
-    public float groundDistance = 0.2f;     // Distance player is considered to be on the ground
-    public float grabDistance = 0.5f;       // The reach distance for wall grabs
-    public LayerMask groundLayer;           // Layer fo the ground
-
-    [Header("Crouch Properties")]
-    public float crouchSizeDivider = 2f;    // Size of crouch divider
-
-    [Header("Dash Properties")]
-    public float dashForce = 30f;
-    public float dashWaitTime = 1f;
-
-    [Header("Status Flags")]
-    public bool isOnGround;
-    public bool isJumping;
-    public bool isHanging;
-    public bool isCrouching;
-    public bool isHeadBlocked;
-
+    // Objects
     public SpriteRenderer sprite;
-
-    private V3_PlayerInput playerInput;
     private BoxCollider2D bodyCollider;
     private Rigidbody2D rigidBody;
 
@@ -61,7 +23,6 @@ public class V3_PlayerMovement : MonoBehaviour
     private float playerHeight;
     private float originalXScale;
     private int direction = 1;              // Player facing direction
-    private bool canDash = true;
 
     private Vector2 colliderStandSize;      // Size of the standing collider
     private Vector2 colliderStandOffset;    // Offset of the standing collider
@@ -71,10 +32,18 @@ public class V3_PlayerMovement : MonoBehaviour
     private const float smallAmount = 0.05f; // A small amount used for hanging position
 
     //****************************************************************************************************
+    private void Awake()
+    {
+        if(playerSO == null || inputSO == null)
+        {
+            Debug.LogError("No SO Found - TZV V3_PlayerMovement");
+        }
+    }
+
+    //****************************************************************************************************
     private void Start()
     {
         // Get Ref
-        playerInput = GetComponent<V3_PlayerInput>();
         bodyCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
 
@@ -85,8 +54,11 @@ public class V3_PlayerMovement : MonoBehaviour
         colliderStandOffset = bodyCollider.offset;
 
         // Calc new sollider size and offset for crouch
-        colliderCrouchSize = new Vector2(bodyCollider.size.x, bodyCollider.size.y / crouchSizeDivider);
-        colliderCrouchOffset = new Vector2(bodyCollider.offset.x, bodyCollider.offset.y / crouchSizeDivider);
+        colliderCrouchSize = new Vector2(bodyCollider.size.x, bodyCollider.size.y / playerSO.crouchSizeDivider);
+        colliderCrouchOffset = new Vector2(bodyCollider.offset.x, bodyCollider.offset.y / playerSO.crouchSizeDivider);
+
+        playerSO.isFacingRight = true;
+        playerSO.canDash = true;
     }
 
     //****************************************************************************************************
@@ -102,38 +74,38 @@ public class V3_PlayerMovement : MonoBehaviour
     private void PhysicsCheck()
     {
         // Assume we are grounded and standing
-        isOnGround = false;
-        isHeadBlocked = false;
+        playerSO.isOnGround = false;
+        playerSO.isHeadBlocked = false;
 
         // Raycast for left and right feet
-        RaycastHit2D leftCheck = Raycast(new Vector2(-footOffset, 0f), Vector2.down, groundDistance);
-        RaycastHit2D rightCheck = Raycast(new Vector2(footOffset, 0f), Vector2.down, groundDistance);
+        RaycastHit2D leftCheck = Raycast(new Vector2(-playerSO.footOffset, 0f), Vector2.down, playerSO.groundDistance);
+        RaycastHit2D rightCheck = Raycast(new Vector2(playerSO.footOffset, 0f), Vector2.down, playerSO.groundDistance);
 
         // If either ray hit the ground, the player is on the ground
         if (leftCheck || rightCheck)
         {
-            isOnGround = true;
+            playerSO.isOnGround = true;
         }
 
         //Cast the ray to check above the player's head
-        RaycastHit2D headCheck = Raycast(new Vector2(0f, bodyCollider.size.y), Vector2.up, headClearance);
+        RaycastHit2D headCheck = Raycast(new Vector2(0f, bodyCollider.size.y), Vector2.up, playerSO.headClearance);
 
         //If that ray hits, the player's head is blocked
         if (headCheck)
         {
-            isHeadBlocked = true;
+            playerSO.isHeadBlocked = true;
         }
 
         // Determine the direction of the wall grab attempt
         Vector2 grabDir = new Vector2(direction, 0f);
 
         // Cast three rays to look for a wall grab
-        RaycastHit2D blockedCheck = Raycast(new Vector2(footOffset * direction, playerHeight), grabDir, grabDistance);
-        RaycastHit2D ledgeCheck = Raycast(new Vector2(reachOffset * direction, playerHeight), Vector2.down, grabDistance);
-        RaycastHit2D wallCheck = Raycast(new Vector2(footOffset * direction, eyeHeight), grabDir, grabDistance);
+        RaycastHit2D blockedCheck = Raycast(new Vector2(playerSO.footOffset * direction, playerHeight), grabDir, playerSO.grabDistance);
+        RaycastHit2D ledgeCheck = Raycast(new Vector2(playerSO.reachOffset * direction, playerHeight), Vector2.down, playerSO.grabDistance);
+        RaycastHit2D wallCheck = Raycast(new Vector2(playerSO.footOffset * direction, playerSO.eyeHeight), grabDir, playerSO.grabDistance);
 
         // If the player is off the ground AND is not hanging AND is falling AND found a ledge AND found a wall AND the grab is NOT blocked...
-        if (!isOnGround && !isHanging && rigidBody.velocity.y < 0f && ledgeCheck && wallCheck && !blockedCheck && playerInput.isWallGrabHeld)
+        if (!playerSO.isOnGround && !playerSO.isHanging && rigidBody.velocity.y < 0f && ledgeCheck && wallCheck && !blockedCheck && inputSO.isWallGrabHeld)
         {
             // ...we have a ledge grab. Record the current position...
             Vector3 pos = transform.position;
@@ -151,7 +123,7 @@ public class V3_PlayerMovement : MonoBehaviour
             rigidBody.bodyType = RigidbodyType2D.Static;
 
             // ...finally, set isHanging to true
-            isHanging = true;
+            playerSO.isHanging = true;
         }
     }
 
@@ -159,27 +131,27 @@ public class V3_PlayerMovement : MonoBehaviour
     private void GroundMovement()
     {
         // If currently hanging, the player can't move to exit
-        if (isHanging)
+        if (playerSO.isHanging)
             return;
 
         // Handle crouching input. If holding the crouch button but not crouching, crouch
-        if (playerInput.isCrouchHeld && !isCrouching && isOnGround)
+        if (inputSO.isCrouchHeld && !playerSO.isCrouching && playerSO.isOnGround)
         {
             Crouch();
         }
         //Otherwise, if not holding crouch but currently crouching, stand up
-        else if (!playerInput.isCrouchHeld && isCrouching)
+        else if (!inputSO.isCrouchHeld && playerSO.isCrouching)
         {
             StandUp();
         }
         //Otherwise, if crouching and no longer on the ground, stand up
-        else if (!isOnGround && isCrouching)
+        else if (!playerSO.isOnGround && playerSO.isCrouching)
         {
             StandUp();
         }
 
         // Calculate the desired velocity based on inputs
-        float xVelocity = speed * playerInput.horizontal;
+        float xVelocity = playerSO.speed * inputSO.horizontal;
 
         // If the sign of the velocity and direction don't match, flip the character
         if (xVelocity * direction < 0f)
@@ -188,9 +160,9 @@ public class V3_PlayerMovement : MonoBehaviour
         }
 
         // If the player is crouching, reduce the velocity
-        if (isCrouching)
+        if (playerSO.isCrouching)
         {
-            xVelocity /= crouchSpeedDivisor;
+            xVelocity /= playerSO.crouchSpeedDivider;
 
             sprite.transform.localScale = new Vector3(1f, 0.9f, 1f);
             sprite.transform.localPosition = new Vector3(0f, 0.45f, 0f);
@@ -205,10 +177,10 @@ public class V3_PlayerMovement : MonoBehaviour
         }
 
         // Apply X Velocity
-        if (useAcc)
+        if (playerSO.useAcceleration)
         {
             // Apply the desired velocity & Acceleration
-            rigidBody.velocity = new Vector2(Mathf.MoveTowards(rigidBody.velocity.x, xVelocity, acceleration * Time.deltaTime), rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(Mathf.MoveTowards(rigidBody.velocity.x, xVelocity, playerSO.acceleration * Time.deltaTime), rigidBody.velocity.y);
         }
         else
         {
@@ -217,9 +189,9 @@ public class V3_PlayerMovement : MonoBehaviour
         }
 
         // If the player is on the ground, extend the coyote time window
-        if (isOnGround)
+        if (playerSO.isOnGround)
         {
-            coyoteTime = Time.time + coyoteDuration;
+            coyoteTime = Time.time + playerSO.coyoteDuration;
         }
     }
 
@@ -227,16 +199,16 @@ public class V3_PlayerMovement : MonoBehaviour
     private void AirMovement()
     {
         // If the player is currently hanging...
-        if (isHanging)
+        if (playerSO.isHanging)
         {
             // If dash is pressed
             CheckForDash();
 
             // If player lets go
-            if (!playerInput.isWallGrabHeld)
+            if (!inputSO.isWallGrabHeld)
             {
                 // ...let go
-                isHanging = false;
+                playerSO.isHanging = false;
 
                 // ...set the rigidbody to dynamic and exit
                 rigidBody.bodyType = RigidbodyType2D.Dynamic;
@@ -245,14 +217,14 @@ public class V3_PlayerMovement : MonoBehaviour
             }
 
             // If jump is pressed...
-            if (playerInput.isJumpPressed)
+            if (inputSO.isJumpPressed)
             {
                 // ...let go
-                isHanging = false;
+                playerSO.isHanging = false;
 
                 // ...set the rigidbody to dynamic and apply a jump force
                 rigidBody.bodyType = RigidbodyType2D.Dynamic;
-                rigidBody.AddForce(new Vector2(0f, hangingJumpForce), ForceMode2D.Impulse);
+                rigidBody.AddForce(new Vector2(0f, playerSO.hangingJumpForce), ForceMode2D.Impulse);
 
                 //...and exit
                 return;
@@ -260,50 +232,50 @@ public class V3_PlayerMovement : MonoBehaviour
         }
 
         // If the jump key is pressed AND the player isn't already jumping AND EITHER the player is on the ground or within the coyote time window...
-        if (playerInput.isJumpPressed && !isJumping && (isOnGround || coyoteTime > Time.time))
+        if (inputSO.isJumpPressed && !playerSO.isJumping && (playerSO.isOnGround || coyoteTime > Time.time) && !playerSO.isHeadBlocked)
         {
             // ...check to see if crouching AND not blocked. If so
-            if (isCrouching && !isHeadBlocked)
+            if (playerSO.isCrouching && !playerSO.isHeadBlocked)
             {
                 // ...stand up and apply a crouching jump boost
                 StandUp();
 
-                rigidBody.AddForce(new Vector2(0f, crouchJumpBoost), ForceMode2D.Impulse);
+                rigidBody.AddForce(new Vector2(0f, playerSO.crouchJumpBoost), ForceMode2D.Impulse);
             }
 
             // ...The player is no longer on the ground and is jumping
-            isOnGround = false;
-            isJumping = true;
+            playerSO.isOnGround = false;
+            playerSO.isJumping = true;
 
             // ...record the time the player will stop being able to boost their jump
-            jumpTime = Time.time + jumpHoldDuration;
+            jumpTime = Time.time + playerSO.jumpHoldDuration;
 
             // ...add the jump force to the rigidbody
-            rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            rigidBody.AddForce(new Vector2(0f, playerSO.jumpForce), ForceMode2D.Impulse);
 
             // ...and tell the Audio Manager to play the jump audio
             V3_AudioManager.PlayJumpAudio();
         }
         // Otherwise, if currently within the jump time window
-        else if (isJumping)
+        else if (playerSO.isJumping)
         {
             // ...and the jump button is held, apply an incremental force to the rigidbody
-            if (playerInput.isJumpHeld)
+            if (inputSO.isJumpHeld)
             {
-                rigidBody.AddForce(new Vector2(0f, jumpHoldForce), ForceMode2D.Impulse);
+                rigidBody.AddForce(new Vector2(0f, playerSO.jumpHoldForce), ForceMode2D.Impulse);
             }
 
             // ...and if jump time is past, set isJumping to false
             if (jumpTime <= Time.time)
             {
-                isJumping = false;
+                playerSO.isJumping = false;
             }
         }
 
         // If player is falling to fast, reduce the Y velocity to the max
-        if (rigidBody.velocity.y < maxFallSpeed)
+        if (rigidBody.velocity.y < playerSO.maxFallSpeed)
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, maxFallSpeed);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, playerSO.maxFallSpeed);
         }
     }
 
@@ -311,6 +283,7 @@ public class V3_PlayerMovement : MonoBehaviour
     private void FlipCharacterDirection()
     {
         // Turn the character by flipping the direction
+        playerSO.isFacingRight = !playerSO.isFacingRight;
         direction *= -1;
 
         // Record the current scale
@@ -327,7 +300,7 @@ public class V3_PlayerMovement : MonoBehaviour
     private void Crouch()
     {
         // The player is crouching
-        isCrouching = true;
+        playerSO.isCrouching = true;
 
         // Apply the crouching collider size and offset
         bodyCollider.size = colliderCrouchSize;
@@ -338,11 +311,11 @@ public class V3_PlayerMovement : MonoBehaviour
     private void StandUp()
     {
         // If the player's head is blocked, they can't stand so exit
-        if (isHeadBlocked)
+        if (playerSO.isHeadBlocked)
             return;
 
         // The player isn't crouching
-        isCrouching = false;
+        playerSO.isCrouching = false;
 
         // Apply the standing collider size and offset
         bodyCollider.size = colliderStandSize;
@@ -353,18 +326,18 @@ public class V3_PlayerMovement : MonoBehaviour
     private void CheckForDash()
     {
         // If dash is pressed
-        if (playerInput.isDashPressed && canDash)
+        if (inputSO.isDashPressed && playerSO.canDash)
         {
-            if (isHanging)
+            if (playerSO.isHanging)
             {
-                isHanging = false;
+                playerSO.isHanging = false;
                 rigidBody.bodyType = RigidbodyType2D.Dynamic;
                 FlipCharacterDirection();
             }
 
-            canDash = false;
+            playerSO.canDash = false;
             DOVirtual.Float(14f, 0f, 0.4f, RigidBodyDrag);
-            rigidBody.AddForce(new Vector2(direction * dashForce * 100f, 0f), ForceMode2D.Force);
+            rigidBody.AddForce(new Vector2(direction * playerSO.dashForce * 100f, 0f), ForceMode2D.Force);
             StartCoroutine(DashTime());
         }
     }
@@ -378,8 +351,8 @@ public class V3_PlayerMovement : MonoBehaviour
     //****************************************************************************************************
     private IEnumerator DashTime()
     {
-        yield return new WaitForSeconds(dashWaitTime);
-        canDash = true;
+        yield return new WaitForSeconds(playerSO.dashWaitTime);
+        playerSO.canDash = true;
     }
 
     //****************************************************************************************************
@@ -387,7 +360,7 @@ public class V3_PlayerMovement : MonoBehaviour
     private RaycastHit2D Raycast(Vector2 offset, Vector2 rayDirection, float length)
     {
         // Call the overloaded Raycast() method using the ground layermask and return the results
-        return Raycast(offset, rayDirection, length, groundLayer);
+        return Raycast(offset, rayDirection, length, playerSO.groundLayer);
     }
 
     //****************************************************************************************************
@@ -400,7 +373,7 @@ public class V3_PlayerMovement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pos + offset, rayDirection, length, mask);
 
         // If we want to show debug raycasts in the scene...
-        if (drawDebugRaycasts)
+        if (playerSO.drawDebugRaycasts)
         {
             // ...determine the color based on if the raycast hit...
             Color color = hit ? Color.red : Color.green;
