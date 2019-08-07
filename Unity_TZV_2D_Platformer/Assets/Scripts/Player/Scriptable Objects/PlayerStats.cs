@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "PlayerStats", menuName = "TZV/ScriptableObjects/PlayerStats", order = 1)]
 public class PlayerStats : ScriptableObject
 {
     [Header("Health")]

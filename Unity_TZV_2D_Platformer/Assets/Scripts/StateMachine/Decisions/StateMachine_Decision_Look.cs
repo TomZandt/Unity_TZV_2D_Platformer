@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "StateMachine_Decision_Look", menuName = "TZV/ScriptableObjects/StateMachine_Decision_Look", order = 1)]
 public class StateMachine_Decision_Look : StateMachine_Decision
 {
     //****************************************************************************************************

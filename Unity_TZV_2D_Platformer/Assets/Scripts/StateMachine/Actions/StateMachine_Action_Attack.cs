@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "StateMachine_Action_Attack", menuName = "TZV/ScriptableObjects/StateMachine_Action_Attack", order = 1)]
 public class StateMachine_Action_Attack : StateMachine_Action
 {
     //****************************************************************************************************

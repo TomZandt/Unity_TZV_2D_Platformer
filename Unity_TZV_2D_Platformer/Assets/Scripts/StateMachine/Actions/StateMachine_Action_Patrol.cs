@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "StateMachine_Action_Patrol", menuName = "TZV/ScriptableObjects/StateMachine_Action_Patrol", order = 1)]
 public class StateMachine_Action_Patrol : StateMachine_Action
 {
     private bool isWaypoint1 = false;

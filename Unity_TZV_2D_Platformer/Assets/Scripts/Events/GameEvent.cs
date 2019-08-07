@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "GameEvent", menuName = "TZV/ScriptableObjects/GameEvent", order = 1)]
 public class GameEvent : ScriptableObject
 {
     private readonly List<GameEventListener> eventListeners = new List<GameEventListener>();

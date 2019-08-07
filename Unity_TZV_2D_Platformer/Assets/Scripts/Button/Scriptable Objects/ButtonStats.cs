@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "ButtonStats", menuName = "TZV/ScriptableObjects/ButtonStats", order = 1)]
 public class ButtonStats : ScriptableObject
 {
     [Header("Health")]

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "SceneObject", menuName = "TZV/ScriptableObjects/SceneObject", order = 1)]
 public class SceneObject : ScriptableObject
 {
     public GameObject prefab;
