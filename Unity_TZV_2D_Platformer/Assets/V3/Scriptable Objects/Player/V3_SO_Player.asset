@@ -35,11 +35,11 @@ MonoBehaviour:
   crouchSizeDivider: 2
   dashForce: 30
   dashWaitTime: 1
-  isOnGround: 1
+  isOnGround: 0
   isJumping: 0
   isHanging: 0
-  isCrouching: 1
-  isHeadBlocked: 1
-  isFacingRight: 1
-  canDash: 1
+  isCrouching: 0
+  isHeadBlocked: 0
+  isFacingRight: 0
+  canDash: 0
   drawDebugRaycasts: 0

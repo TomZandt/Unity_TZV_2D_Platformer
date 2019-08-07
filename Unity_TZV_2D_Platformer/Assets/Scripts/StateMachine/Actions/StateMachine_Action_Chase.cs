@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-[CreateAssetMenu(fileName = "StateMachine_Action_Chase", menuName = "StateMachine_Action_Chase", order = 1)]
+[CreateAssetMenu(fileName = "StateMachine_Action_Chase", menuName = "TZV/ScriptableObjects/StateMachine_Action_Chase", order = 1)]
 public class StateMachine_Action_Chase : StateMachine_Action
 {
     //****************************************************************************************************
