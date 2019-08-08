@@ -32,13 +32,7 @@ public class V3_PlayerInput : MonoBehaviour
     private void Update()
     {
         // Clear any existing input values
-        ClearInput();
-
-        // Exit if is game over
-        if (V3_GameManager.IsGameOver())
-        {
-            return;
-        }
+        ClearInput();      
 
         // Process inputs
         ProcessInput();

@@ -218,7 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf30c9c18845734d952bf5b7c9980f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathVFXPrefab: {fileID: 0}
+  gameEvent_PlayerDied: {fileID: 11400000, guid: 7749e08c383249d40b28b1f6b44f8dd5,
+    type: 2}
+  playerSO: {fileID: 11400000, guid: cc99c45368de9a344b61a22836606f4c, type: 2}
 --- !u!1 &5187049727158152147
 GameObject:
   m_ObjectHideFlags: 0

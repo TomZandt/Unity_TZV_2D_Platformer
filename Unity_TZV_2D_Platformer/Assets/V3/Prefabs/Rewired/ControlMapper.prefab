@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rewiredInputManager: {fileID: 5795923564867567091, guid: da0a6da634ec5424f93635f7c388df7e,
     type: 3}
-  _dontDestroyOnLoad: 1
+  _dontDestroyOnLoad: 0
   _openOnStart: 0
   _keyboardMapDefaultLayout: 0
   _mouseMapDefaultLayout: 0

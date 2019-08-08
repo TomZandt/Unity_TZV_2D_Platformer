@@ -70,3 +70,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b7b0b3daeddfa4f8eac5d35622ccad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEvent_playerInWinZone: {fileID: 11400000, guid: f83177c0c5719c24eac793dcb167d34c,
+    type: 2}

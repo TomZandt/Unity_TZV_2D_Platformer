@@ -42,6 +42,7 @@ public class V3_SO_Player : ScriptableObject
     public bool isHeadBlocked = false;
     public bool isFacingRight = true;
     public bool canDash = true;
+    public bool isAlive = true;
 
     [Header("Debug")]
     public bool drawDebugRaycasts = false;

@@ -4,8 +4,8 @@ using UnityEngine;
 public class V3_Key : MonoBehaviour
 {
     [Header("Events")]
-    public ScriptableObjectArchitecture.ObjectGameEvent ObjectGameEvent_KeyAddedToScene;
-    public ScriptableObjectArchitecture.ObjectGameEvent ObjectGameEvent_PlayerPickedUpKey;
+    public ScriptableObjectArchitecture.V3_KeyGameEvent V3_KeyGameEvent_KeyAddedToScene;
+    public ScriptableObjectArchitecture.V3_KeyGameEvent V3_KeyGameEvent_PlayerPickedUpKey;
 
     private int playerLayerint; // The layer the player game object is on
 
@@ -17,7 +17,7 @@ public class V3_Key : MonoBehaviour
 
         // Raise a game event to say this is in the scene
         Debug.Log("ObjectGameEvent_KeyAddedToScene Raised - V3_Key");
-        ObjectGameEvent_KeyAddedToScene.Raise(this.gameObject);
+        V3_KeyGameEvent_KeyAddedToScene.Raise(this);
     }
 
     //****************************************************************************************************
@@ -29,6 +29,9 @@ public class V3_Key : MonoBehaviour
 
         // Tell the game manager that this key was picked up
         Debug.Log("ObjectGameEvent_PlayerPickedUpKey Raised - V3_Key");
-        ObjectGameEvent_PlayerPickedUpKey.Raise(this.gameObject);
+        V3_KeyGameEvent_PlayerPickedUpKey.Raise(this);
+
+        // Destroy this game object
+        Destroy(gameObject);
     }
 }
