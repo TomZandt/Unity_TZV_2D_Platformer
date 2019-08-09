@@ -10,13 +10,21 @@ public class V3_UIManager : MonoBehaviour
 
     public GameObject[] GameObjectsToShow;
 
-    private float totalPlayTime;
+    private float totalPlayTime = 0;
+    private float menuTime = 0;
+    private bool calcMenuTime = true;
 
     //****************************************************************************************************
     private void Update()
     {
         if (intVariable_CurrentScene.Value > 1)
         {
+            if (calcMenuTime)
+            {
+                menuTime = Time.unscaledTime;
+                calcMenuTime = false;
+            }
+
             for (int i = 0; i < GameObjectsToShow.Length; i++)
             {
                 GameObjectsToShow[i].SetActive(true);
@@ -33,7 +41,7 @@ public class V3_UIManager : MonoBehaviour
                 intVariable_deathCount.Value = 0;
         }
 
-        stringVariable_playerPlayTime.Value = FormatPlayTime(Time.unscaledTime);
+        stringVariable_playerPlayTime.Value = FormatPlayTime(Time.unscaledTime - menuTime);
     }
 
     //****************************************************************************************************
