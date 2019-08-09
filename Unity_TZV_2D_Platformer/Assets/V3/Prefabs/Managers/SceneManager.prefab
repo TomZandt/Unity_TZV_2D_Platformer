@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca7bccee2d73764486275c43fb3aebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intVariable_CurrentScene: {fileID: 11400000, guid: 1324dd65681bed64bb92987ef293dbfc,
+    type: 2}
   gameEvent_playerCompletedGame: {fileID: 11400000, guid: 0711c9d346077cc42814f7abcc844748,
     type: 2}
   intGameEvent_loadNextScene: {fileID: 11400000, guid: a81c7643230601f4581176fef6cf7b7c,
@@ -139,7 +141,8 @@ MonoBehaviour:
   _showDebugFields: 0
   _enableGizmoDebugging: 1
   _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
+  _previouslyRegisteredEvent: {fileID: 11400000, guid: f83177c0c5719c24eac793dcb167d34c,
+    type: 2}
   _event: {fileID: 11400000, guid: f83177c0c5719c24eac793dcb167d34c, type: 2}
   _response:
     m_PersistentCalls:

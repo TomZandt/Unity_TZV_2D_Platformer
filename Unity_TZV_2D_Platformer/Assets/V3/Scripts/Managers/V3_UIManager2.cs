@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class V3_UIManager2 : MonoBehaviour
 {
-    public ScriptableObjectArchitecture.IntGameEvent intGameEvent_PlayerDeathCountUpdated;
     public ScriptableObjectArchitecture.IntVariable intVariable_deathCount;
-    public ScriptableObjectArchitecture.StringGameEvent StringGameEvent_playerPlayTimeUpdated;
     public ScriptableObjectArchitecture.StringVariable stringVariable_playerPlayTime;
+    public ScriptableObjectArchitecture.IntVariable intVariable_CurrentScene;
+
+    public GameObject[] GameObjectsToShow;
 
     private float totalPlayTime;
 
     //****************************************************************************************************
-    private void Start()
-    {
-        Debug.Log("UpdateDeathCount Raised - V3_UIManager2");
-        intGameEvent_PlayerDeathCountUpdated.Raise(intVariable_deathCount.Value);
-
-        InvokeRepeating("Invoker", 0f, 1f);
-    }
-
-    //****************************************************************************************************
     private void Update()
     {
+        if (intVariable_CurrentScene.Value > 1)
+        {
+            for (int i = 0; i < GameObjectsToShow.Length; i++)
+            {
+                GameObjectsToShow[i].SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < GameObjectsToShow.Length; i++)
+            {
+                GameObjectsToShow[i].SetActive(false);
+            }
+
+            if (intVariable_deathCount.Value != 0)
+            {
+                intVariable_deathCount.Value = 0;
+            }
+        }
+
         stringVariable_playerPlayTime.Value = FormatPlayTime(Time.unscaledTime);
     }
 
@@ -30,9 +42,6 @@ public class V3_UIManager2 : MonoBehaviour
     public void UpdateDeathCount()
     {
         intVariable_deathCount.Value++;
-
-        Debug.Log("UpdateDeathCount Raised - V3_UIManager2");
-        intGameEvent_PlayerDeathCountUpdated.Raise(intVariable_deathCount.Value);
     }
 
     //****************************************************************************************************
@@ -45,11 +54,5 @@ public class V3_UIManager2 : MonoBehaviour
 
         //Create the string in the appropriate format for the time
         return hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
-    }
-
-    //****************************************************************************************************
-    private void Invoker()
-    {
-        StringGameEvent_playerPlayTimeUpdated.Raise(stringVariable_playerPlayTime.Value);
     }
 }
