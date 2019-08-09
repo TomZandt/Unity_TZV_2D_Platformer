@@ -30,9 +30,7 @@ public class V3_UIManager2 : MonoBehaviour
             }
 
             if (intVariable_deathCount.Value != 0)
-            {
                 intVariable_deathCount.Value = 0;
-            }
         }
 
         stringVariable_playerPlayTime.Value = FormatPlayTime(Time.unscaledTime);
