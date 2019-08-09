@@ -1,151 +1,80 @@
-// This script is a Manager that controls the UI HUD (deaths, time, and orbs) for the 
-// project. All HUD UI commands are issued through the static methods of this class
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using Rewired;
-using Rewired.UI.ControlMapper;
-using UnityEngine.SceneManagement;
 
 public class V3_UIManager : MonoBehaviour
 {
-    //This class holds a static reference to itself to ensure that there will only be
-    //one in existence. This is often referred to as a "singleton" design pattern. Other
-    //scripts access this one through its public static methods
-    private static V3_UIManager current;
+    public ScriptableObjectArchitecture.IntVariable intVariable_deathCount;
+    public ScriptableObjectArchitecture.StringVariable stringVariable_playerPlayTime;
+    public ScriptableObjectArchitecture.IntVariable intVariable_CurrentScene;
 
-    public TextMeshProUGUI orbText;         //Text element showing number of orbs
-    public TextMeshProUGUI timeText;        //Text element showing amount of time
-    public TextMeshProUGUI deathText;       //Text element showing number or deaths
-    public TextMeshProUGUI gameOverText;    //Text element showing the Game Over message
+    public GameObject[] GameObjectsToShow;
 
-    private ControlMapper controlMapper;
-    private Player player;
-    private V3_PlayerInput playerInput;
-    private bool canPause = true;
-
-    //****************************************************************************************************
-    private void Awake()
-    {
-        //If an UIManager exists and it is not this...
-        if (current != null && current != this)
-        {
-            //...destroy this and exit. There can be only one UIManager
-            Destroy(gameObject);
-            return;
-        }
-
-        //This is the current UIManager and it should persist between scene loads
-        current = this;
-        DontDestroyOnLoad(gameObject);
-
-        // Assign the rewired player
-        player = ReInput.players.GetPlayer(0); // 0 default for first player
-
-        playerInput = FindObjectOfType<V3_PlayerInput>();
-        controlMapper = FindObjectOfType<ControlMapper>();
-
-        canPause = true;
-    }
+    private float totalPlayTime;
 
     //****************************************************************************************************
     private void Update()
     {
-        CheckForPause();
-
-        if (orbText == null)
+        if (intVariable_CurrentScene.Value > 1)
         {
-            orbText = GameObject.FindGameObjectWithTag("OrbUI").GetComponentInChildren<TextMeshProUGUI>();
+            for (int i = 0; i < GameObjectsToShow.Length; i++)
+            {
+                GameObjectsToShow[i].SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < GameObjectsToShow.Length; i++)
+            {
+                GameObjectsToShow[i].SetActive(false);
+            }
+
+            if (intVariable_deathCount.Value != 0)
+                intVariable_deathCount.Value = 0;
         }
 
-        if (timeText == null)
-        {
-            timeText = GameObject.FindGameObjectWithTag("TimeUI").GetComponentInChildren<TextMeshProUGUI>();
-        }
-
-        if (deathText == null)
-        {
-            deathText = GameObject.FindGameObjectWithTag("DeathsUI").GetComponentInChildren<TextMeshProUGUI>();
-
-        }
-
-        if (gameOverText == null)
-        {
-            gameOverText = GameObject.FindGameObjectWithTag("GameOverUI").GetComponentInChildren<TextMeshProUGUI>();
-
-        }
+        stringVariable_playerPlayTime.Value = FormatPlayTime(Time.unscaledTime);
     }
 
     //****************************************************************************************************
-    public static void UpdateOrbUI(int orbCount)
+    public void UpdateDeathCount()
     {
-        //If there is no current UIManager, exit
-        if (current == null || current.orbText == null)
-            return;
-
-        //Update the text orb element
-        current.orbText.text = orbCount.ToString();
+        intVariable_deathCount.Value++;
     }
 
     //****************************************************************************************************
-    public static void UpdateTimeUI(float time)
+    public string FormatPlayTime(float _time)
     {
-        //If there is no current UIManager, exit
-        if (current == null || current.timeText == null)
-            return;
-
         //Take the time and convert it into the number of minutes and seconds
-        int minutes = (int)(time / 60);
-        float seconds = time % 60f;
+        int hours = (int)(_time / 3600);
+        int minutes = (int)(_time / 60);
+        float seconds = _time % 60f;
 
         //Create the string in the appropriate format for the time
-        current.timeText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        return hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
     }
 
-    //****************************************************************************************************
-    public static void UpdateDeathUI(int deathCount)
-    {
-        //If there is no current UIManager, exit
-        if (current == null || current.deathText == null)
-            return;
+    ////****************************************************************************************************
+    //private void CheckForPause()
+    //{
+    //    // Toggle game is paused
+    //    if (player.GetButtonDown("Pause") && SceneManager.GetActiveScene().buildIndex != 0)
+    //    {
+    //        if (canPause)
+    //        {
+    //            Time.timeScale = 0;
+    //            canPause = false;
 
-        //update the player death count element
-        current.deathText.text = deathCount.ToString();
-    }
+    //            controlMapper.Open();
+    //        }
+    //        else
+    //        {
+    //            controlMapper.Close(true);
 
-    //****************************************************************************************************
-    public static void DisplayGameOverText()
-    {
-        //If there is no current UIManager, exit
-        if (current == null || current.gameOverText == null)
-            return;
-
-        //Show the game over text
-        current.gameOverText.enabled = true;
-        current.gameOverText.gameObject.SetActive(true);
-    }
-
-    //****************************************************************************************************
-    private void CheckForPause()
-    {
-        // Toggle game is paused
-        if (player.GetButtonDown("Pause") && SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            if (canPause)
-            {
-                Time.timeScale = 0;
-                canPause = false;
-
-                controlMapper.Open();
-            }
-            else
-            {
-                controlMapper.Close(true);
-
-                playerInput.ClearInput();
-                Time.timeScale = 1;
-                canPause = true;
-            }
-        }
-    }
+    //            playerInput.ClearInput();
+    //            Time.timeScale = 1;
+    //            canPause = true;
+    //        }
+    //    }
+    //}
 }
