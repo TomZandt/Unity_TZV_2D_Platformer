@@ -13,4 +13,21 @@ public class V3_SO_Input : ScriptableObject
     public bool isWallGrabHeld = false;
     public bool isDashPressed = false;
     public bool isPausePressed = false;
+
+    //****************************************************************************************************
+    public void Reset()
+    {
+        horizontal = 0f;
+        freelookHorizontal = 0f;
+        freelookVertical = 0f;
+        isJumpPressed = false;
+        isJumpHeld = false;
+        isCrouchPressed = false;
+        isCrouchHeld = false;
+        isWallGrabHeld = false;
+        isDashPressed = false;
+        isPausePressed = false;
+    }
 }
+
+

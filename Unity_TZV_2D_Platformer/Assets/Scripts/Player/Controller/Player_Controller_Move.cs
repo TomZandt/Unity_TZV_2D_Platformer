@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controller_Move : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
+    public PlayerStats playerStats;
 
     private Rigidbody2D rb;
     private float userInputRawHorizontal;

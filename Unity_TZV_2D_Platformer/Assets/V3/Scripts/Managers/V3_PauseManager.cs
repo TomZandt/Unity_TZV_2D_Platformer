@@ -52,6 +52,9 @@ public class V3_PauseManager : MonoBehaviour
         // Update game is paused bool
         boolVariable_gameIsPaused.Value = false;
 
+        // Reset Input to clear unwanted
+        inputSO.Reset();
+
         // Close the menu
         PauseUI.SetActive(false);
 
@@ -63,10 +66,6 @@ public class V3_PauseManager : MonoBehaviour
     public void QuitGame()
     {
         Debug.LogWarning("QuitGame called - TZV V3_UI_Menu_Start");
-
-        if (UnityEditor.EditorApplication.isPlaying)
-            UnityEditor.EditorApplication.isPlaying = false;
-        else
-            Application.Quit();
+        Application.Quit();
     }
 }

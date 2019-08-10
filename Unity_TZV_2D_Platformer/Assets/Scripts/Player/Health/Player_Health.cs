@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player_Health : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private GameEvent playerDiedEvent;
-    [SerializeField] private GameEvent playerHealthChangedEvent;
+    public PlayerStats playerStats;
+    public GameEvent playerDiedEvent;
+    public GameEvent playerHealthChangedEvent;
 
     //****************************************************************************************************
     private void Start()

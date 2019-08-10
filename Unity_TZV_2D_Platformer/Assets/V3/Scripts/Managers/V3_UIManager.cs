@@ -9,7 +9,6 @@ public class V3_UIManager : MonoBehaviour
 
     public GameObject[] GameObjectsToShow;
 
-    private float totalPlayTime = 0;
     private float menuTime = 0;
     private bool calcMenuTime = true;
 

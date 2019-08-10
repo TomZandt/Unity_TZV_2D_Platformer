@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player_Controller_Jump : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private GameEvent jumpGameEvent;
+    public PlayerStats playerStats;
+    public GameEvent jumpGameEvent;
 
     private Rigidbody2D rb;
 

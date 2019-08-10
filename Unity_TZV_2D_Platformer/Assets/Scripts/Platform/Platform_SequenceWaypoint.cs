@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Platform_SequenceWaypoint : MonoBehaviour
 {
-    [SerializeField] private Transform waypoint1;
-    [SerializeField] private Transform waypoint2;
-    [SerializeField] private float platformSpeed;
+    public Transform waypoint1;
+    public Transform waypoint2;
+    public float platformSpeed;
 
     private bool goToWP1 = true;
     private bool goToWP2 = false;

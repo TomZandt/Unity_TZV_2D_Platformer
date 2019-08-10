@@ -24,10 +24,6 @@ public class V3_UI_Menu_Start : MonoBehaviour
     public void QuitGame()
     {
         Debug.LogWarning("QuitGame called - TZV V3_UI_Menu_Start");
-
-        if (UnityEditor.EditorApplication.isPlaying)
-            UnityEditor.EditorApplication.isPlaying = false;
-        else
-            Application.Quit();
+        Application.Quit();
     }
 }

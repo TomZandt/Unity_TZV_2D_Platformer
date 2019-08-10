@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controller_Gravity : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
+    public PlayerStats playerStats;
 
     private Rigidbody2D rb;
 

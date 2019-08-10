@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy_Controller_Move : MonoBehaviour
 {
-    [SerializeField] private EnemyStats enemyStats;
+    public EnemyStats enemyStats;
     
     private Rigidbody2D rb;
     private Vector3 Direction;

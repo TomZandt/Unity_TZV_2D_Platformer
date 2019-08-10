@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player_Attack_Basic : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private GameEvent playerAttackGameEvent;
+    public PlayerStats playerStats;
+    public GameEvent playerAttackGameEvent;
 
     //****************************************************************************************************
     private void Start()

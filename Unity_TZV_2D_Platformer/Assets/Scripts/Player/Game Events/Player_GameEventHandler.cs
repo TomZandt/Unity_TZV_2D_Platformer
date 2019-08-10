@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_GameEventHandler : MonoBehaviour 
 {
-    [SerializeField] private PlayerStats playerStats;
+    public PlayerStats playerStats;
 
     //****************************************************************************************************
     public void Player_Attack_GameEventHandler(GameObject playerWeapon)

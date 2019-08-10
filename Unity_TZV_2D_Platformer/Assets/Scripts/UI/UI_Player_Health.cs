@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class UI_Player_Health : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private GameObject[] icons;
+    public PlayerStats playerStats;
+    public GameObject[] icons;
 
     //****************************************************************************************************
     public void UpdateUIPlayerHealth()

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player_Controller_SetIsGrounded : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private Transform groundCheckTransform;
+    public PlayerStats playerStats;
+    public Transform groundCheckTransform;
 
     //****************************************************************************************************
     void Update()

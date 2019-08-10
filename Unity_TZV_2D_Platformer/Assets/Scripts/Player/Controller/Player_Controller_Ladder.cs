@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player_Controller_Ladder : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private GameEvent ladderGameEvent;
+    public PlayerStats playerStats;
+    public GameEvent ladderGameEvent;
 
     private Rigidbody2D rb;
     private float userInputRawVertical;

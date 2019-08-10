@@ -7,7 +7,7 @@ public class Button_Health : MonoBehaviour
     public ButtonStats buttonStats;
     private float currentHealth;
 
-    [SerializeField] private GameEvent buttonDiedEvent;
+    public GameEvent buttonDiedEvent;
 
     //****************************************************************************************************
     private void Start()
