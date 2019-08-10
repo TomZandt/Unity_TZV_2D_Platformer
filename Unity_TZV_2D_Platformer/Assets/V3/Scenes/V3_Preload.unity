@@ -120,6 +120,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &60219956 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7776351625326999844, guid: 947086763791c4d4b9b83378cef43242,
+    type: 3}
+  m_PrefabInstance: {fileID: 380682953}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edac79059a45d244a8050315593a7e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &380682953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -186,6 +198,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051518382048076536, guid: 947086763791c4d4b9b83378cef43242,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 60219956}
+    - target: {fileID: 2051518382048076536, guid: 947086763791c4d4b9b83378cef43242,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Open
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 947086763791c4d4b9b83378cef43242, type: 3}

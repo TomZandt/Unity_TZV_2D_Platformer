@@ -13,8 +13,8 @@ public class V3_PlayerInput : MonoBehaviour
 {
     public V3_SO_Input inputSO;
 
-    private bool readyToClear;  // Used in FixedUpdate to ensure code gets current input
-    private Player player;      // Rewired player
+    private bool readyToClear = true;   // Used in FixedUpdate to ensure code gets current input
+    private Player player;              // Rewired player
 
     //****************************************************************************************************
     private void Awake()
@@ -23,6 +23,8 @@ public class V3_PlayerInput : MonoBehaviour
         {
             Debug.LogError("No SO Found - TZV V3_PlayerInput");
         }
+
+        ClearInput();
 
         // Assign the rewired player
         player = ReInput.players.GetPlayer(0); // 0 default for first player
@@ -69,6 +71,7 @@ public class V3_PlayerInput : MonoBehaviour
         inputSO.isCrouchHeld = false;
         inputSO.isWallGrabHeld = false;
         inputSO.isDashPressed = false;
+        inputSO.isPausePressed = false;
 
         // Not ready
         readyToClear = false;
@@ -77,7 +80,7 @@ public class V3_PlayerInput : MonoBehaviour
     //****************************************************************************************************
     private void ProcessInput()
     {
-        // USing accumulation to accumulate inputs
+        // Using accumulation to accumulate inputs
 
         // Axis
         inputSO.horizontal += player.GetAxis("Move Horizontal");
@@ -94,5 +97,8 @@ public class V3_PlayerInput : MonoBehaviour
         inputSO.isWallGrabHeld = inputSO.isWallGrabHeld || player.GetButton("Wall Grab");
 
         inputSO.isDashPressed = inputSO.isDashPressed || player.GetButtonDown("Dash");
+
+
+        inputSO.isPausePressed = player.GetButtonDown("Pause");
     }
 }

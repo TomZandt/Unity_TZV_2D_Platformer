@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 4640159752367012659}
   - component: {fileID: 2134058442809237195}
   - component: {fileID: 4348476458576396055}
-  - component: {fileID: 3446077051727606301}
-  - component: {fileID: 3446077051727606300}
+  - component: {fileID: 1111658639026886116}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +159,7 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3446077051727606301
+--- !u!114 &1111658639026886116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,46 +168,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2719772362141360923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636b72f8fc644b4418a9e8ad0f4f804f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeveloperDescription:
-    _value: 
-  _showDebugFields: 0
-  _enableGizmoDebugging: 1
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
-  _previouslyRegisteredEvent: {fileID: 0}
-  _event: {fileID: 11400000, guid: 4aae3d2e29f0ea343afcbc65349abfd0, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3446077051727606300}
-        m_MethodName: SetTextString
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: ScriptableObjectArchitecture.StringUnityEvent, ScriptableObject-Architecture,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  _debugValue: 
---- !u!114 &3446077051727606300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2719772362141360923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1491ff28ca259647923bfede26e5549, type: 3}
+  m_Script: {fileID: 11500000, guid: e4a6e4a0ef9b8534f80fd4a8ca1b2619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textComp: {fileID: 4348476458576396055}
+  stringVariable_PlayerPlayTime: {fileID: 11400000, guid: ba7659103f2501042b7870dfbdb5a20c,
+    type: 2}
 --- !u!1 &8935722362108001511
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +186,7 @@ GameObject:
   - component: {fileID: 8935722362108001528}
   - component: {fileID: 8935722362108001529}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Total Play Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,16 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe8e0064ad20fd4b9064232649853f6, type: 3}
-  m_Name: V3_SO_Input
+  m_Script: {fileID: 11500000, guid: 168ff32065cd13747a95ae8c9d2a0232, type: 3}
+  m_Name: BoolVariable_GameIsPaused
   m_EditorClassIdentifier: 
-  horizontal: 0
-  freelookHorizontal: 0
-  freelookVertical: 0
-  isJumpPressed: 0
-  isJumpHeld: 0
-  isCrouchPressed: 0
-  isCrouchHeld: 0
-  isWallGrabHeld: 0
-  isDashPressed: 0
-  isPausePressed: 0
+  DeveloperDescription:
+    _value: 
+  _value: 0
+  _readOnly: 0
+  _raiseWarning: 1
+  _isClamped: 0
+  _minClampedValue: 0
+  _maxClampedValue: 0

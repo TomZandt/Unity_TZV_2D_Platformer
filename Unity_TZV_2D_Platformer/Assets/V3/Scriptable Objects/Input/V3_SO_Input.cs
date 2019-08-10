@@ -12,4 +12,5 @@ public class V3_SO_Input : ScriptableObject
     public bool isCrouchHeld = false;
     public bool isWallGrabHeld = false;
     public bool isDashPressed = false;
+    public bool isPausePressed = false;
 }

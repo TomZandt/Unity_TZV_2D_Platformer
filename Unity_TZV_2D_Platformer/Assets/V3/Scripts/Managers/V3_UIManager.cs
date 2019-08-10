@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Rewired.UI.ControlMapper;
 
 public class V3_UIManager : MonoBehaviour
 {
@@ -61,28 +60,4 @@ public class V3_UIManager : MonoBehaviour
         //Create the string in the appropriate format for the time
         return hours.ToString("00") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
     }
-
-    ////****************************************************************************************************
-    //private void CheckForPause()
-    //{
-    //    // Toggle game is paused
-    //    if (player.GetButtonDown("Pause") && SceneManager.GetActiveScene().buildIndex != 0)
-    //    {
-    //        if (canPause)
-    //        {
-    //            Time.timeScale = 0;
-    //            canPause = false;
-
-    //            controlMapper.Open();
-    //        }
-    //        else
-    //        {
-    //            controlMapper.Close(true);
-
-    //            playerInput.ClearInput();
-    //            Time.timeScale = 1;
-    //            canPause = true;
-    //        }
-    //    }
-    //}
 }
