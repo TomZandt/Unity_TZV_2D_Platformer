@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4174122483102143723}
   - component: {fileID: 288456286868861916}
+  - component: {fileID: 3541574425267550592}
   m_Layer: 11
   m_Name: Door
   m_TagString: Untagged
@@ -68,6 +69,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!210 &3541574425267550592
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466120324920749417}
+  m_Enabled: 1
+  m_SortingLayerID: 1735115147
+  m_SortingLayer: -3
+  m_SortingOrder: 0
 --- !u!1 &5938670313274169091
 GameObject:
   m_ObjectHideFlags: 0

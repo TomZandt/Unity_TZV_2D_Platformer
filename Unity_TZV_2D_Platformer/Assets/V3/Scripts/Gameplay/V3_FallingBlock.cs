@@ -1,16 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class Platform_Falling : MonoBehaviour
+public class V3_FallingBlock : MonoBehaviour
 {
-    public float fallDelay = 2f;
+    public float fallDelay = 0f;
     public bool destroyAfterFall = false;
 
     private Rigidbody2D rb2D;
-    private float refVel;
-    private float currentRot;
+
     private bool hasFallen = false;
-    private int playerLayer;
+    private int platformLayer;
 
     //****************************************************************************************************
     private void Start()
@@ -21,27 +20,29 @@ public class Platform_Falling : MonoBehaviour
         rb2D.useFullKinematicContacts = true;
 
         // Get the integer representation
-        playerLayer = LayerMask.NameToLayer("Player");
+        platformLayer = LayerMask.NameToLayer("Platform");
 
         hasFallen = false;
+
+        gameObject.layer = LayerMask.NameToLayer("Trap");
     }
 
     //****************************************************************************************************
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == playerLayer && !hasFallen)
+        if (collision.gameObject.layer == platformLayer && hasFallen)
         {
-            hasFallen = true;
-            StartCoroutine(Fall());
+            rb2D.bodyType = RigidbodyType2D.Kinematic;
+            gameObject.layer = platformLayer;
         }
     }
 
     //****************************************************************************************************
-    IEnumerator Fall()
+    public IEnumerator Fall()
     {
         yield return new WaitForSeconds(fallDelay);
         rb2D.bodyType = RigidbodyType2D.Dynamic;
-        rb2D.mass = 10f;
+        hasFallen = true;
 
         if (destroyAfterFall)
         {
