@@ -1,5 +1,6 @@
 using UnityEngine;
 using Rewired.UI.ControlMapper;
+using UnityEngine.SceneManagement;
 
 public class V3_PauseManager : MonoBehaviour
 {
@@ -67,5 +68,13 @@ public class V3_PauseManager : MonoBehaviour
     {
         Debug.LogWarning("QuitGame called - TZV V3_UI_Menu_Start");
         Application.Quit();
+    }
+
+    //****************************************************************************************************
+    public void LoadSceneByIndex(int _index)
+    {
+        Resume();
+
+        SceneManager.LoadScene(_index, LoadSceneMode.Single);
     }
 }

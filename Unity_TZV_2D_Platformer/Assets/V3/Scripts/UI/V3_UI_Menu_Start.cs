@@ -21,6 +21,12 @@ public class V3_UI_Menu_Start : MonoBehaviour
     }
 
     //****************************************************************************************************
+    public void LoadSceneByIndex(int _index)
+    {
+        SceneManager.LoadScene(_index, LoadSceneMode.Single);
+    }
+
+    //****************************************************************************************************
     public void QuitGame()
     {
         Debug.LogWarning("QuitGame called - TZV V3_UI_Menu_Start");
