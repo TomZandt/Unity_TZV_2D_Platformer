@@ -9,6 +9,6 @@ public class V3_DDOL_Preloader : MonoBehaviour
         GameObject check = GameObject.Find("__DontDestroy");
 
         if (check == null)
-            SceneManager.LoadScene(0, LoadSceneMode.Additive);
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }

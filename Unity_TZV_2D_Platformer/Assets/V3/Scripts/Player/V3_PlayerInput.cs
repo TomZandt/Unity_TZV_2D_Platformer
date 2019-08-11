@@ -34,7 +34,7 @@ public class V3_PlayerInput : MonoBehaviour
     private void Update()
     {
         // Clear any existing input values
-        ClearInput();      
+        ClearInput();
 
         // Process inputs
         ProcessInput();
