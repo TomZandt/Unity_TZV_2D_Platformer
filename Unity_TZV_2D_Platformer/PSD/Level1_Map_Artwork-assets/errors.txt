@@ -1,9 +1,0 @@
-[2019-7-26 15:44:54] layer "+1": Expected Either a default asset specification or a layer asset specification but "+" found.
-[2019-7-26 15:44:54] layer "+2": Expected Either a default asset specification or a layer asset specification but "+" found.
-[2019-7-26 15:44:54] layer "+3": Expected Either a default asset specification or a layer asset specification but "+" found.
-[2019-7-26 15:44:54] layer "+4": Expected Either a default asset specification or a layer asset specification but "+" found.
-[2019-7-26 15:44:54] layer "+5": Expected Either a default asset specification or a layer asset specification but "+" found.
-[2019-7-26 15:44:54] layer "+6": Expected Either a default asset specification or a layer asset specification but "+" found.
-[2019-7-26 15:44:54] layer "+7": Expected Either a default asset specification or a layer asset specification but "+" found.
-[2019-7-26 15:44:54] layer "+8": Expected Either a default asset specification or a layer asset specification but "+" found.
-[2019-7-26 15:44:54] layer "+9": Expected Either a default asset specification or a layer asset specification but "+" found.

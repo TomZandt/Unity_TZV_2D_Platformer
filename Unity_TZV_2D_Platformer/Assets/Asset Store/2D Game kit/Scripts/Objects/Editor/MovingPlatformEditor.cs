@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -29,7 +29,7 @@ namespace Gamekit2D
         public override void OnInspectorGUI()
         {
             EditorGUI.BeginChangeCheck();
-            m_MovingPlatform.platformCatcher = EditorGUILayout.ObjectField("Platform Catcher", m_MovingPlatform.platformCatcher, typeof(PlatformCatcher), true) as PlatformCatcher;
+           
             if (EditorGUI.EndChangeCheck())
                 Undo.RecordObject(target, "Changed Catcher");
 

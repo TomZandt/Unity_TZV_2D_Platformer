@@ -15,7 +15,6 @@ namespace Gamekit2D
             ONCE
         }
 
-        public PlatformCatcher platformCatcher;
         public float speed = 1.0f;
         public MovingPlatformType platformType;
 
@@ -56,18 +55,12 @@ namespace Gamekit2D
 
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_Rigidbody2D.isKinematic = true;
-
-            if (platformCatcher == null)
-                platformCatcher = GetComponent<PlatformCatcher>();
         }
 
         private void Start()
         {
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_Rigidbody2D.isKinematic = true;
-
-            if (platformCatcher == null)
-                platformCatcher = GetComponent<PlatformCatcher>();
 
             //Allow to make platform only move when they became visible
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
@@ -188,8 +181,6 @@ namespace Gamekit2D
                 //transform.position +=  direction.normalized * dist;
                 m_Rigidbody2D.MovePosition(m_Rigidbody2D.position + m_Velocity);
 
-                if (platformCatcher != null)
-                    platformCatcher.MoveCaughtObjects(m_Velocity);
                 //We remove the distance we moved. That way if we didn't had enough distance to the next goal, we will do a new loop to finish
                 //the remaining distance we have to cover this frame toward the new goal
                 distanceToGo -= dist;

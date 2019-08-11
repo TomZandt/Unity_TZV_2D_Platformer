@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8442547420474885421}
   - component: {fileID: 3466224779797110525}
   - component: {fileID: 6810197650910759888}
-  - component: {fileID: 6810197650910759889}
+  - component: {fileID: 323277630}
   m_Layer: 20
   m_Name: Moving Spike
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6810197650910759890}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11, y: -10, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
@@ -131,7 +131,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6810197650910759889
+--- !u!114 &323277630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,14 +143,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c546c8b7ab72c7b4499299ec3ff45d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformCatcher: {fileID: 0}
-  speed: 4
+  speed: 5
   platformType: 0
   startMovingOnlyWhenVisible: 0
   isMovingAtStart: 1
   localNodes:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 6.5, z: 0}
+  - {x: 6, y: 0, z: 0}
   waitTimes:
   - 0
   - 0
