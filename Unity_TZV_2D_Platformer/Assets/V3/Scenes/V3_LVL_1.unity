@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -519,7 +519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 114266255}
   - component: {fileID: 114266254}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tile Map Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -882,7 +882,7 @@ GameObject:
   - component: {fileID: 255885407}
   - component: {fileID: 255885406}
   - component: {fileID: 255885405}
-  m_Layer: 31
+  m_Layer: 13
   m_Name: Tilemap_Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7773,7 +7773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c546c8b7ab72c7b4499299ec3ff45d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformCatcher: {fileID: 0}
   speed: 5
   platformType: 0
   startMovingOnlyWhenVisible: 0
@@ -9129,7 +9128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c546c8b7ab72c7b4499299ec3ff45d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformCatcher: {fileID: 0}
   speed: 5
   platformType: 0
   startMovingOnlyWhenVisible: 0
@@ -9151,7 +9149,7 @@ GameObject:
   - component: {fileID: 1243741809}
   - component: {fileID: 1243741811}
   - component: {fileID: 1243741810}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tilemap_Detail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9378,6 +9376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6810197650910759889, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
+    - {fileID: 323277630, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
 --- !u!4 &1258542910 stripped
 Transform:
@@ -9403,8 +9402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c546c8b7ab72c7b4499299ec3ff45d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformCatcher: {fileID: 0}
-  speed: 1
+  speed: 2
   platformType: 0
   startMovingOnlyWhenVisible: 0
   isMovingAtStart: 1
@@ -9656,8 +9654,13 @@ PrefabInstance:
       propertyPath: speed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 323277630, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6810197650910759889, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
+    - {fileID: 323277630, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
 --- !u!4 &1292726649 stripped
 Transform:
@@ -10443,7 +10446,7 @@ GameObject:
   - component: {fileID: 1680086176}
   - component: {fileID: 1680086178}
   - component: {fileID: 1680086177}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tilemap_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25160,7 +25163,7 @@ GameObject:
   - component: {fileID: 1884804941}
   - component: {fileID: 1884804943}
   - component: {fileID: 1884804942}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tilemap_Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25899,7 +25902,7 @@ GameObject:
   - component: {fileID: 1891988415}
   - component: {fileID: 1891988417}
   - component: {fileID: 1891988416}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tilemap_Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32587,6 +32590,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: __Dev_Preloader
       objectReference: {fileID: 0}
+    - target: {fileID: 6318379662360407830, guid: 56cc90e0647cc0144a7af72553a192db,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6318379662360407824, guid: 56cc90e0647cc0144a7af72553a192db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32738,6 +32746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6810197650910759889, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
+    - {fileID: 323277630, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e871a2d9308e11d429921413cedd8ff7, type: 3}
 --- !u!1001 &7301272615152318352
 PrefabInstance:

@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 363157388}
   - component: {fileID: 363157390}
   - component: {fileID: 363157389}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tilemap_Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6448,7 +6448,7 @@ GameObject:
   - component: {fileID: 476698208}
   - component: {fileID: 476698210}
   - component: {fileID: 476698209}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tilemap_Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7318,36 +7318,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3434351242002948130, guid: c8c20867b66013443b74dc16214cdce6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434351242002948130, guid: c8c20867b66013443b74dc16214cdce6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434351242002948130, guid: c8c20867b66013443b74dc16214cdce6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434351242214254147, guid: c8c20867b66013443b74dc16214cdce6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434351242214254147, guid: c8c20867b66013443b74dc16214cdce6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434351242214254147, guid: c8c20867b66013443b74dc16214cdce6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -50
-      objectReference: {fileID: 0}
     - target: {fileID: 3434351242214254146, guid: c8c20867b66013443b74dc16214cdce6,
         type: 3}
       propertyPath: m_Follow
@@ -7358,15 +7328,45 @@ PrefabInstance:
       propertyPath: m_Lens.FieldOfView
       value: 21.139664
       objectReference: {fileID: 0}
+    - target: {fileID: 3434351242002948130, guid: c8c20867b66013443b74dc16214cdce6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434351242002948130, guid: c8c20867b66013443b74dc16214cdce6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434351242002948130, guid: c8c20867b66013443b74dc16214cdce6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434351242214254147, guid: c8c20867b66013443b74dc16214cdce6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434351242214254147, guid: c8c20867b66013443b74dc16214cdce6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434351242214254147, guid: c8c20867b66013443b74dc16214cdce6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 3434351242214254145, guid: c8c20867b66013443b74dc16214cdce6,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3434351242318093930, guid: c8c20867b66013443b74dc16214cdce6,
+    - target: {fileID: 3434351241829885664, guid: c8c20867b66013443b74dc16214cdce6,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_CameraDistance
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3434351242002948131, guid: c8c20867b66013443b74dc16214cdce6,
         type: 3}
@@ -7378,10 +7378,10 @@ PrefabInstance:
       propertyPath: field of view
       value: 21.139664
       objectReference: {fileID: 0}
-    - target: {fileID: 3434351241829885664, guid: c8c20867b66013443b74dc16214cdce6,
+    - target: {fileID: 3434351242318093930, guid: c8c20867b66013443b74dc16214cdce6,
         type: 3}
-      propertyPath: m_CameraDistance
-      value: 50
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8c20867b66013443b74dc16214cdce6, type: 3}
@@ -8044,7 +8044,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1233636650}
   - component: {fileID: 1233636649}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tile Map Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8163,7 +8163,7 @@ GameObject:
   - component: {fileID: 1263343614}
   - component: {fileID: 1263343616}
   - component: {fileID: 1263343615}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tilemap_Detail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8302,7 +8302,7 @@ GameObject:
   - component: {fileID: 1456991113}
   - component: {fileID: 1456991115}
   - component: {fileID: 1456991114}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Tilemap_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23367,7 +23367,7 @@ GameObject:
   - component: {fileID: 2006392355}
   - component: {fileID: 2006392354}
   - component: {fileID: 2006392353}
-  m_Layer: 31
+  m_Layer: 13
   m_Name: Tilemap_Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}

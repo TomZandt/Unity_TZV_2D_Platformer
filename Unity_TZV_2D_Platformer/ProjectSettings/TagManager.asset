@@ -3,13 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Button
-  - OrbUI
-  - GameOverUI
-  - TimeUI
-  - DeathsUI
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -21,59 +15,29 @@ TagManager:
   - 
   - Level
   - Enemy
-  - Usable
   - Interactable
-  - IgnorePlayer
   - Player
-  - Cameras
-  - LitSprites
-  - Destructable
-  - EnemyWeapon
-  - BossWeakPoint
-  - Bullet
   - Trap
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - PlayerDrop
   - Platform
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
-  - name: +9
-    uniqueID: 1699859837
-    locked: 0
-  - name: +8
-    uniqueID: 1292524347
-    locked: 0
-  - name: +7
-    uniqueID: 2800190209
-    locked: 0
-  - name: +6
-    uniqueID: 2811736285
-    locked: 0
-  - name: +5
-    uniqueID: 2018627741
-    locked: 0
-  - name: +4
-    uniqueID: 1300366219
-    locked: 0
-  - name: +3
-    uniqueID: 744766537
-    locked: 0
-  - name: +2
-    uniqueID: 2600291717
-    locked: 0
-  - name: +1
-    uniqueID: 3335332133
-    locked: 0
-  - name: 0
-    uniqueID: 663202079
-    locked: 0
   - name: Tilemap Background
     uniqueID: 2300877203
     locked: 0
@@ -100,13 +64,4 @@ TagManager:
     locked: 0
   - name: Tilemap Foreground
     uniqueID: 3972521525
-    locked: 0
-  - name: -1
-    uniqueID: 3875590645
-    locked: 0
-  - name: -2
-    uniqueID: 3349537067
-    locked: 0
-  - name: -3
-    uniqueID: 4192597237
     locked: 0

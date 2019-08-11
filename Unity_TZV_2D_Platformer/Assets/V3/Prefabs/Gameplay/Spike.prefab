@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6308058738616406226}
   - component: {fileID: 1728589470216703935}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2690064917980285738}
   - component: {fileID: 3572617914118912914}
-  m_Layer: 20
+  m_Layer: 12
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 390815403993686857}
   - component: {fileID: 4696374052730154553}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

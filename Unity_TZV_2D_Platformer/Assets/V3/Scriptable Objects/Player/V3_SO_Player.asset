@@ -31,7 +31,7 @@ MonoBehaviour:
   grabDistance: 0.6
   groundLayer:
     serializedVersion: 2
-    m_Bits: 2147483648
+    m_Bits: 8192
   crouchSizeDivider: 2
   dashForce: 30
   dashWaitTime: 1
@@ -42,4 +42,5 @@ MonoBehaviour:
   isHeadBlocked: 0
   isFacingRight: 0
   canDash: 0
+  isAlive: 1
   drawDebugRaycasts: 0

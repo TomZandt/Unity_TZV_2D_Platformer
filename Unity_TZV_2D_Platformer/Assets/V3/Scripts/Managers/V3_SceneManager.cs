@@ -61,7 +61,8 @@ public class V3_SceneManager : MonoBehaviour
         Debug.Log("LoadSceneIDWithSave(int _sceneId) Called - V3_SceneManager");
 
         Debug.Log("PlayerPrefs.SetInt Raised - V3_SceneManager (Scene: " + _sceneId + ")");
-        PlayerPrefs.SetInt("levelReachedByPlayer", _sceneId);
+        if (_sceneId > PlayerPrefs.GetInt("levelReachedByPlayer"))
+            PlayerPrefs.SetInt("levelReachedByPlayer", _sceneId);
 
         Debug.Log("intGameEvent_loadNextScene Raised - V3_SceneManager (Scene: " + _sceneId + ")");
         intGameEvent_loadNextScene.Raise(_sceneId);

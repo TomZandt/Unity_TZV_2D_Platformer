@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1162910437035054651}
   - component: {fileID: 1344387728008264481}
-  m_Layer: 20
+  m_Layer: 0
   m_Name: Freeform Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 4489838698257866377}
   - component: {fileID: 8570373773784111704}
   - component: {fileID: 9160952549768411010}
-  m_Layer: 20
+  m_Layer: 12
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
