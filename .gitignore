@@ -4,7 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
-/Unity_TZV_2D_Platformer/Assets/Reference/
+/Unity_TZV_2D_Platformer/Assets/V3/Reference/
+/Unity_TZV_2D_Platformer/PSD
 
 # Visual Studio cache directory
 .vs/
