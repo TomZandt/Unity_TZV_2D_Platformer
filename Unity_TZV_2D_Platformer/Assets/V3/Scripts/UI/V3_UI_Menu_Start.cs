@@ -1,29 +1,37 @@
+//****************************************************************************************************
+// Reference: https://www.youtube.com/watch?v=AQpDtrNJAEU&list=PLPV2KyIb3jR4u5jX8za5iU1cqnQPmbzG0&index=27
+//****************************************************************************************************
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class V3_UI_Menu_Start : MonoBehaviour
 {
-    //****************************************************************************************************
-    public void LoadNextScene()
-    {
-        // If there is not another scene
-        if (SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.sceneCountInBuildSettings - 1)
-        {
-            // Do nothing
-            Debug.LogWarning("No scene to load - TZV V3_UI_Menu_Start");
-            return;
-        }
+    public ScriptableObjectArchitecture.IntGameEvent intGameEvent_PlayerRequestedScene;
+    public Button[] levelButtons;
 
-        // Load the next Scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
+    //****************************************************************************************************
+    private void Start()
+    {
+        int levelReachedByPlayer = PlayerPrefs.GetInt("levelReachedByPlayer", 2);
+
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            if (i + 2 > levelReachedByPlayer)
+                levelButtons[i].interactable = false;
+        }
     }
 
     //****************************************************************************************************
-    public void LoadSceneByIndex(int _index)
+    public void RequestNextScene(int _sceneIndex)
     {
-        SceneManager.LoadScene(_index, LoadSceneMode.Single);
+        Debug.Log("RequestNextScene(int _sceneIndex) Called - V3_UI_Menu_Start");
+
+        Debug.Log("intGameEvent_PlayerRequestedScene Raised - V3_UI_Menu_Start (Scene: " + _sceneIndex + ")");
+        intGameEvent_PlayerRequestedScene.Raise(_sceneIndex);
     }
 
     //****************************************************************************************************

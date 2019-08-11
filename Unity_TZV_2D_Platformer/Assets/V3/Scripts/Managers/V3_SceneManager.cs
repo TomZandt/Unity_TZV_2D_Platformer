@@ -19,6 +19,8 @@ public class V3_SceneManager : MonoBehaviour
     //****************************************************************************************************
     public void LoadNextScene()
     {
+        Debug.Log("LoadNextScene() Called - V3_SceneManager");
+
         nextSceneID = SceneManager.GetActiveScene().buildIndex + 1;
 
         if (nextSceneID > SceneManager.sceneCountInBuildSettings - 1)
@@ -26,36 +28,44 @@ public class V3_SceneManager : MonoBehaviour
 
         if (nextSceneID <= -1)
         {
-            Debug.Log("playerCompletedGame Raised - V3_SceneManager");
+            Debug.Log("gameEvent_playerCompletedGame Raised - V3_SceneManager");
             gameEvent_playerCompletedGame.Raise();
         }
         else
         {
-            LoadSceneID(nextSceneID);
+            LoadSceneIDWithSave(nextSceneID);
         }
-    }
-
-    //****************************************************************************************************
-    public void LoadSceneID(int _sceneId)
-    {
-        Debug.Log("LoadNextScene Raised - V3_SceneManager (Scene: " + _sceneId + ")");
-        intGameEvent_loadNextScene.Raise(_sceneId);
-
-        Debug.Log("LoadSceneID Called - V3_SceneManager");
-        SceneManager.LoadScene(_sceneId, LoadSceneMode.Single);
     }
 
     //****************************************************************************************************
     public void ReloadActiveScene()
     {
-        Debug.Log("ReloadActiveScene Called - V3_SceneManager");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        Debug.Log("ReloadActiveScene() Called - V3_SceneManager");
+        LoadSceneID(SceneManager.GetActiveScene().buildIndex);
     }
 
     //****************************************************************************************************
-    public void RestartGame()
+    public void LoadSceneID(int _sceneId)
     {
-        Debug.Log("RestartGame Called - V3_SceneManager");
-        LoadSceneID(0);
+        Debug.Log("LoadSceneID(int _sceneId) Called - V3_SceneManager");
+
+        Debug.Log("intGameEvent_loadNextScene Raised - V3_SceneManager (Scene: " + _sceneId + ")");
+        intGameEvent_loadNextScene.Raise(_sceneId);
+
+        SceneManager.LoadScene(_sceneId, LoadSceneMode.Single);
+    }
+
+    //****************************************************************************************************
+    private void LoadSceneIDWithSave(int _sceneId)
+    {
+        Debug.Log("LoadSceneIDWithSave(int _sceneId) Called - V3_SceneManager");
+
+        Debug.Log("PlayerPrefs.SetInt Raised - V3_SceneManager (Scene: " + _sceneId + ")");
+        PlayerPrefs.SetInt("levelReachedByPlayer", _sceneId);
+
+        Debug.Log("intGameEvent_loadNextScene Raised - V3_SceneManager (Scene: " + _sceneId + ")");
+        intGameEvent_loadNextScene.Raise(_sceneId);
+
+        SceneManager.LoadScene(_sceneId, LoadSceneMode.Single);
     }
 }
